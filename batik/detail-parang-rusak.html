@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batik Parang Rusak - Batik Nusantara</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .detail-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            color: white;
+        }
+
+        .detail-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .detail-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            height: 600px;
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .detail-content h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-content h3 {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-content p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+
+        .detail-info {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .detail-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .detail-info li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .detail-info li:last-child {
+            border-bottom: none;
+        }
+
+        .detail-info li strong {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+            min-width: 120px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 968px) {
+            .detail-container {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-image {
+                height: 400px;
+            }
+
+            .detail-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🎨 Batik Nusantara</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="about.html">Tentang</a></li>
+                <li><a href="gallery.html">Galeri</a></li>
+                 <li><a href="sejarah.html">Sejarah</a></li>
+                <li><a href="contact.html">Kontak</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="detail-hero">
+        <h1>Batik Parang Rusak</h1>
+        <p>Motif Batik Klasik dari Keraton Solo</p>
+        <a href="gallery.html" class="back-button">← Kembali ke Galeri</a>
+    </section>
+
+    <div class="container">
+        <div class="detail-container">
+            <div class="detail-image">
+                <img src="images/parang rusak.jpg" alt="Batik Parang Rusak">
+            </div>
+
+            <div class="detail-content">
+                <h2>Tentang Batik Parang Rusak</h2>
+                <p>
+                    Batik Parang Rusak adalah salah satu motif batik tertua dan paling terkenal dari Keraton Surakarta (Solo). Motif ini memiliki nilai filosofis yang sangat dalam dalam budaya Jawa.
+                </p>
+
+                <h3>Filosofi dan Makna</h3>
+                <p>
+                    Kata "Parang" berasal dari kata "pereng" yang berarti lereng atau tebing yang curam, sedangkan "Rusak" berarti hancur atau runtuh. Motif ini melambangkan kekuatan, keteguhan, dan semangat yang tidak pernah padam meskipun menghadapi berbagai rintangan.
+                </p>
+
+                <h3>Sejarah</h3>
+                <p>
+                    Motif Parang Rusak dulunya merupakan motif batik yang hanya boleh dikenakan oleh keluarga keraton, khususnya Raja dan keluarganya. Motif ini dipercaya dapat memberikan kekuatan dan perlindungan bagi pemakainya.
+                </p>
+
+                <h3>Karakteristik</h3>
+                <p>
+                    Motif Parang Rusak memiliki pola diagonal yang berulang dan saling bertautan, menyerupai ombak laut atau lereng gunung. Warna yang dominan adalah cokelat soga yang khas dari batik Solo, melambangkan keagungan dan kewibawaan.
+                </p>
+
+                <div class="detail-info">
+                    <h3>Informasi Detail</h3>
+                    <ul>
+                        <li><strong>Asal Daerah:</strong> Solo (Surakarta), Jawa Tengah</li>
+                        <li><strong>Jenis:</strong> Batik Klasik</li>
+                        <li><strong>Warna Khas:</strong> Cokelat Soga, Hitam</li>
+                        <li><strong>Filosofi:</strong> Kekuatan dan keteguhan</li>
+                        <li><strong>Penggunaan:</strong> Acara formal, pernikahan, upacara adat</li>
+                        <li><strong>Status UNESCO:</strong> Warisan Budaya Takbenda</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">Variasi Motif Parang</h2>
+            <div class="content-box">
+                <p><strong>1. Parang Rusak Barong</strong> - Motif Parang dengan ukuran paling besar, khusus untuk raja.</p>
+                <p><strong>2. Parang Rusak</strong> - Ukuran sedang, untuk keluarga raja dan bangsawan tinggi.</p>
+                <p><strong>3. Parang Rusak Klitik</strong> - Ukuran kecil, untuk para abdi dalem dan masyarakat umum.</p>
+                <p><strong>4. Parang Kusumo</strong> - Kombinasi motif Parang dengan bunga, melambangkan keindahan dan kekuatan.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Batik Nusantara</h3>
+                <p>Melestarikan warisan budaya Indonesia untuk generasi mendatang</p>
+            </div>
+            <div class="footer-section">
+                <h3>Menu</h3>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="about.html">Tentang</a></li>
+                    <li><a href="gallery.html">Galeri</a></li>
+                     <li><a href="sejarah.html">Sejarah</a></li>
+                    <li><a href="contact.html">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <p>📧 Email: info@smkn5malang.sch.id</p>
+                <p>📱 Telp: 0341-478195</p>
+                <p>📍Jl. Terusan Ikan Piranha Atas No.50, Tunjungsekar, Kec. Lowokwaru, Kota Malang, Jawa Timur 65142, Indonesia</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Batik Nusantara. Lestarikan Budaya Indonesia 🇮🇩</p>
+        </div>
+    </footer>
+
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

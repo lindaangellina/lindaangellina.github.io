@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      * {
+        font-family: "Inter", sans-serif;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .timeline-line {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(to bottom, #667eea, #764ba2);
+      }
+      @media (max-width: 768px) {
+        .timeline-line {
+          left: 20px;
+        }
+      }
+    </style>
+    <title>Sejarah Batik Indonesia</title>
+</head>
+<body class="bg-white">
+
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <nav aria-label="Global" class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+      <div class="flex lg:flex-1">
+        <a href="index.html" class="-m-1.5 p-1.5 flex items-center gap-2">
+          <span class="sr-only">Batik</span>
+          <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" fill="#667eea"/>
+            <circle cx="12" cy="12" r="6" fill="#764ba2"/>
+          </svg>
+          <span class="text-xl font-bold text-indigo-600">Batik Nusantara</span>
+        </a>
+      </div>
+      <div class="hidden lg:flex lg:gap-x-12">
+        <a href="index.html" class="text-sm font-semibold text-gray-700 hover:text-indigo-600 transition-colors">Beranda</a>
+        <a href="about.html" class="text-sm font-semibold text-gray-700 hover:text-indigo-600 transition-colors">Tentang</a>
+        <a href="gallery.html" class="text-sm font-semibold text-gray-700 hover:text-indigo-600 transition-colors">Galeri</a>
+        <a href="sejarah.html" class="text-sm font-semibold text-indigo-600 border-b-2 border-indigo-600">Sejarah</a>
+        <a href="contact.html" class="text-sm font-semibold text-gray-700 hover:text-indigo-600 transition-colors">Kontak</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <div class="gradient-bg py-20">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <h1 class="text-5xl font-bold tracking-tight text-white sm:text-6xl mb-6">Sejarah Batik Indonesia</h1>
+          <p class="text-xl text-indigo-100">Menelusuri jejak warisan budaya yang telah diakui dunia</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Introduction -->
+    <div class="bg-white py-16">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-4xl">
+          <div class="bg-gradient-to-r from-indigo-50 to-purple-50 p-8 rounded-2xl border-l-4 border-indigo-600 shadow-lg">
+            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+              Batik telah menjadi bagian tak terpisahkan dari budaya Indonesia selama berabad-abad. Kata "batik" berasal dari bahasa Jawa "amba" (menulis) dan "titik" (titik), yang menggambarkan teknik pembuatannya yang menggunakan canting dan malam (lilin).
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+              Pada tanggal 2 Oktober 2009, UNESCO menetapkan batik Indonesia sebagai Warisan Kemanusiaan untuk Budaya Lisan dan Nonbendawi. Sejak saat itu, tanggal tersebut diperingati sebagai Hari Batik Nasional.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              Setiap daerah di Indonesia memiliki corak batik yang unik, mencerminkan filosofi, alam, dan budaya setempat. Batik bukan sekadar kain, tetapi juga simbol identitas dan kebanggaan bangsa Indonesia.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Section -->
+    <div class="bg-gray-50 py-20">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-indigo-900 mb-4">Perjalanan Sejarah Batik</h2>
+          <p class="text-lg text-gray-600">Dari masa kerajaan hingga pengakuan dunia</p>
+        </div>
+
+        <div class="relative">
+          <div class="timeline-line hidden md:block"></div>
+          
+          <div class="space-y-12">
+            <!-- Timeline Item 1 -->
+            <div class="relative flex flex-col md:flex-row items-center gap-8">
+              <div class="md:w-1/2 md:text-right md:pr-12">
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                  <span class="inline-block px-4 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-semibold mb-3">Abad ke-12 - 13</span>
+                  <h3 class="text-xl font-bold text-gray-900 mb-3">Era Kerajaan Majapahit</h3>
+                  <p class="text-gray-600">Batik mulai berkembang di kalangan kerajaan dan bangsawan. Motif-motif batik memiliki makna filosofis dan status sosial.</p>
+                </div>
+              </div>
+              <div class="hidden md:flex w-12 h-12 bg-indigo-600 rounded-full items-center justify-center ring-4 ring-white shadow-lg absolute left-1/2 transform -translate-x-1/2 z-10">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 10a2 2 0 114 0 2 2 0 01-4 0z"/>
+                </svg>
+              </div>
+              <div class="md:w-1/2"></div>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="relative flex flex-col md:flex-row items-center gap-8">
+              <div class="md:w-1/2"></div>
+              <div class="hidden md:flex w-12 h-12 bg-indigo-600 rounded-full items-center justify-center ring-4 ring-white shadow-lg absolute left-1/2 transform -translate-x-1/2 z-10">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"/>
+                </svg>
+              </div>
+              <div class="md:w-1/2 md:pl-12">
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                  <span class="inline-block px-4 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold mb-3">Abad ke-17 - 18</span>
+                  <h3 class="text-xl font-bold text-gray-900 mb-3">Masa Kesultanan</h3>
+                  <p class="text-gray-600">Batik berkembang pesat di Yogyakarta dan Surakarta. Motif-motif klasik seperti Kawung, Parang, dan Truntum diciptakan untuk keraton.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="relative flex flex-col md:flex-row items-center gap-8">
+              <div class="md:w-1/2 md:text-right md:pr-12">
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                  <span class="inline-block px-4 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-semibold mb-3">Abad ke-19</span>
+                  <h3 class="text-xl font-bold text-gray-900 mb-3">Penyebaran ke Masyarakat</h3>
+                  <p class="text-gray-600">Batik mulai diproduksi secara massal dan menyebar ke berbagai daerah. Muncul batik pesisiran dengan warna-warna cerah dan motif yang lebih bebas.</p>
+                </div>
+              </div>
+              <div class="hidden md:flex w-12 h-12 bg-indigo-600 rounded-full items-center justify-center ring-4 ring-white shadow-lg absolute left-1/2 transform -translate-x-1/2 z-10">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
+                </svg>
+              </div>
+              <div class="md:w-1/2"></div>
+            </div>
+
+            <!-- Timeline Item 4 -->
+            <div class="relative flex flex-col md:flex-row items-center gap-8">
+              <div class="md:w-1/2"></div>
+              <div class="hidden md:flex w-12 h-12 bg-indigo-600 rounded-full items-center justify-center ring-4 ring-white shadow-lg absolute left-1/2 transform -translate-x-1/2 z-10">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                  <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                </svg>
+              </div>
+              <div class="md:w-1/2 md:pl-12">
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                  <span class="inline-block px-4 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold mb-3">2 Oktober 2009</span>
+                  <h3 class="text-xl font-bold text-gray-900 mb-3">Pengakuan UNESCO</h3>
+                  <p class="text-gray-600">UNESCO menetapkan batik Indonesia sebagai Warisan Kemanusiaan untuk Budaya Lisan dan Nonbendawi. Tanggal ini ditetapkan sebagai Hari Batik Nasional.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 5 -->
+            <div class="relative flex flex-col md:flex-row items-center gap-8">
+              <div class="md:w-1/2 md:text-right md:pr-12">
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                  <span class="inline-block px-4 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-semibold mb-3">Era Modern</span>
+                  <h3 class="text-xl font-bold text-gray-900 mb-3">Batik Kontemporer</h3>
+                  <p class="text-gray-600">Batik terus berkembang dengan inovasi desain modern, teknologi printing, dan kolaborasi dengan desainer internasional. Batik kini dikenakan di berbagai acara formal dan kasual.</p>
+                </div>
+              </div>
+              <div class="hidden md:flex w-12 h-12 bg-indigo-600 rounded-full items-center justify-center ring-4 ring-white shadow-lg absolute left-1/2 transform -translate-x-1/2 z-10">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/>
+                </svg>
+              </div>
+              <div class="md:w-1/2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fun Facts Section -->
+    <div class="bg-white py-20">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-indigo-900 mb-4">Fakta Menarik Batik</h2>
+          <p class="text-lg text-gray-600">Tahukah Anda?</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-gradient-to-br from-indigo-50 to-purple-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+            <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Proses Pembuatan</h3>
+            <p class="text-gray-600">Pembuatan satu lembar kain batik tulis bisa memakan waktu 2-3 bulan tergantung kerumitan motifnya.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-indigo-50 to-purple-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+            <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Ragam Motif</h3>
+            <p class="text-gray-600">Indonesia memiliki lebih dari 5.000 motif batik yang tersebar di berbagai daerah dengan keunikan masing-masing.</p>
+          </div>
+
+          <div class="bg-gradient-to-br from-indigo-50 to-purple-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+            <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Makna Filosofis</h3>
+            <p class="text-gray-600">Setiap motif batik memiliki makna dan filosofi tersendiri, seperti motif Kawung yang melambangkan kesucian dan keadilan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300">
+    <div class="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        <!-- Section 1: About -->
+        <div>
+          <h3 class="text-xl font-bold text-indigo-400 mb-4">Batik Nusantara</h3>
+          <p class="text-gray-400 mb-4">Melestarikan warisan budaya Indonesia untuk generasi mendatang</p>
+          <p class="text-gray-400">🇮🇩 Made with ❤️ in Indonesia</p>
+        </div>
+
+        <!-- Section 2: Menu -->
+        <div>
+          <h3 class="text-xl font-bold text-indigo-400 mb-4">Menu</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-indigo-400 transition-colors">Beranda</a></li>
+            <li><a href="about.html" class="text-gray-400 hover:text-indigo-400 transition-colors">Tentang</a></li>
+            <li><a href="gallery.html" class="text-gray-400 hover:text-indigo-400 transition-colors">Galeri</a></li>
+            <li><a href="sejarah.html" class="text-gray-400 hover:text-indigo-400 transition-colors">Sejarah</a></li>
+            <li><a href="contact.html" class="text-gray-400 hover:text-indigo-400 transition-colors">Kontak</a></li>
+          </ul>
+        </div>
+
+        <!-- Section 3: Contact -->
+        <div>
+          <h3 class="text-xl font-bold text-indigo-400 mb-4">Kontak</h3>
+          <div class="space-y-2 text-gray-400">
+            <p>📧 Email: info@smkn5malang.sch.id</p>
+            <p>📱 Telp: 0341-478195</p>
+            <p>📍 Jl. Terusan Ikan Piranha Atas No.50, Tunjungsekar, Kec. Lowokwaru, Kota Malang, Jawa Timur 65142, Indonesia</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="mt-12 pt-8 border-t border-gray-800 text-center">
+        <p class="text-gray-400">&copy; 2025 Batik Nusantara. Lestarikan Budaya Indonesia 🇮🇩</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button onclick="scrollToTop()" id="scrollTop" class="fixed bottom-8 right-8 bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:bg-indigo-700 transition-all opacity-0 invisible">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+    </svg>
+  </button>
+
+  <script>
+    // Scroll to Top functionality
+    const scrollTopBtn = document.getElementById('scrollTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.remove('opacity-0', 'invisible');
+        scrollTopBtn.classList.add('opacity-100', 'visible');
+      } else {
+        scrollTopBtn.classList.remove('opacity-100', 'visible');
+        scrollTopBtn.classList.add('opacity-0', 'invisible');
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+
+</body>
+</html>

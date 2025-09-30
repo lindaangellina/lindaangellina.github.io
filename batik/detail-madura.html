@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batik Madura - Batik Nusantara</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .detail-hero {
+            background: linear-gradient(135deg, #E74C3C 0%, #E74C3C 100%);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            color: white;
+        }
+        .detail-hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .detail-container { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; }
+        .detail-image { border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); height: 600px; }
+        .detail-image img { width: 100%; height: 100%; object-fit: cover; }
+        .detail-content { background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .detail-content h2 { color: var(--primary-color); font-size: 2rem; margin-bottom: 1.5rem; }
+        .detail-content h3 { color: var(--secondary-color); font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; }
+        .detail-content p { line-height: 1.8; margin-bottom: 1.5rem; color: var(--text-dark); font-size: 1.1rem; }
+        .detail-info { background: var(--bg-light); padding: 1.5rem; border-radius: 15px; margin-top: 2rem; }
+        .detail-info ul { list-style: none; padding: 0; }
+        .detail-info li { padding: 0.8rem 0; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; }
+        .detail-info li:last-child { border-bottom: none; }
+        .detail-info li strong { color: var(--primary-color); margin-right: 0.5rem; min-width: 120px; }
+        .back-button { display: inline-block; padding: 1rem 2rem; background: white; color: #E74C3C; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 1rem; transition: all 0.3s; }
+        .back-button:hover { background: #E74C3C; color: white; transform: translateY(-3px); }
+        @media (max-width: 968px) {
+            .detail-container { grid-template-columns: 1fr; }
+            .detail-image { height: 400px; }
+            .detail-hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🎨 Batik Nusantara</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="about.html">Tentang</a></li>
+                <li><a href="gallery.html">Galeri</a></li>
+                 <li><a href="sejarah.html">Sejarah</a></li>
+                <li><a href="contact.html">Kontak</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="detail-hero">
+        <h1>Batik Madura</h1>
+        <p>Motif Batik Berani dan Penuh Warna</p>
+        <a href="gallery.html" class="back-button">← Kembali ke Galeri</a>
+    </section>
+
+    <div class="container">
+        <div class="detail-container">
+            <div class="detail-image">
+                <img src="images/madura.jpg" alt="Batik Madura">
+            </div>
+
+            <div class="detail-content">
+                <h2>Tentang Batik Madura</h2>
+                <p>
+                    Batik Madura adalah batik khas dari Pulau Madura, Jawa Timur, yang terkenal dengan warna-warna cerah dan berani. Batik Madura memiliki karakter yang kuat dengan motif flora dan fauna yang digambarkan secara ekspresif dan penuh warna, mencerminkan kepribadian masyarakat Madura yang tegas dan terbuka.
+                </p>
+
+                <h3>Filosofi dan Makna</h3>
+                <p>
+                    Batik Madura melambangkan keberanian, kejujuran, dan semangat hidup yang tinggi. Warna-warna cerah seperti merah, kuning, hijau, dan biru yang mendominasi mencerminkan kehidupan masyarakat pesisir yang dinamis dan penuh optimisme. Motif-motif yang digunakan sering terinspirasi dari alam sekitar, seperti burung, bunga, dan daun.
+                </p>
+
+                <h3>Sejarah dan Perkembangan</h3>
+                <p>
+                    Batik Madura berkembang pesat di wilayah Tanjung Bumi, Pamekasan, Sumenep, dan Bangkalan. Setiap daerah memiliki ciri khas tersendiri dalam motif dan warnanya. Pengaruh perdagangan dengan Cina, Arab, dan Eropa memberikan sentuhan unik pada batik Madura, menjadikannya salah satu batik pesisir yang paling kaya akan warna dan motif.
+                </p>
+
+                <h3>Karakteristik Unik</h3>
+                <p>
+                    Ciri khas Batik Madura adalah penggunaan warna-warna cerah dan kontras yang berani, tidak seperti batik Jawa yang cenderung lebih kalem. Motif-motifnya lebih bebas dan ekspresif, dengan goresan yang tegas. Batik Madura juga dikenal dengan teknik pewarnaan yang kuat dan tahan lama, sehingga warnanya tidak mudah pudar.
+                </p>
+
+                <div class="detail-info">
+                    <h3>Informasi Detail</h3>
+                    <ul>
+                        <li><strong>Asal Daerah:</strong> Madura, Jawa Timur</li>
+                        <li><strong>Jenis:</strong> Batik Pesisir</li>
+                        <li><strong>Warna Khas:</strong> Merah, Kuning, Hijau, Biru</li>
+                        <li><strong>Filosofi:</strong> Keberanian dan kejujuran</li>
+                        <li><strong>Penggunaan:</strong> Pakaian kasual dan formal</li>
+                        <li><strong>Status:</strong> Motif pesisir tradisional</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">Jenis Motif Batik Madura</h2>
+            <div class="content-box">
+                <p><strong>1. Batik Madura Tanjung Bumi</strong> - Batik dengan motif flora dan fauna yang sangat detail dan halus.</p>
+                <p><strong>2. Batik Madura Pamekasan</strong> - Dikenal dengan warna merah menyala dan motif yang berani.</p>
+                <p><strong>3. Batik Madura Sumenep</strong> - Memiliki pengaruh Arab dan Tionghoa dengan motif yang lebih geometris.</p>
+                <p><strong>4. Batik Madura Bangkalan</strong> - Kombinasi motif tradisional dengan sentuhan modern yang kreatif.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Batik Nusantara</h3>
+                <p>Melestarikan warisan budaya Indonesia untuk generasi mendatang</p>
+            </div>
+            <div class="footer-section">
+                <h3>Menu</h3>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="about.html">Tentang</a></li>
+                    <li><a href="gallery.html">Galeri</a></li>
+                     <li><a href="sejarah.html">Sejarah</a></li>
+                    <li><a href="contact.html">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <p>📧 Email: info@smkn5malang.sch.id</p>
+                <p>📱 Telp: 0341-478195</p>
+                <p>📍Jl. Terusan Ikan Piranha Atas No.50, Tunjungsekar, Kec. Lowokwaru, Kota Malang, Jawa Timur 65142, Indonesia</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Batik Nusantara. Lestarikan Budaya Indonesia 🇮🇩</p>
+        </div>
+    </footer>
+
+    <div class="scroll-top" id="scrollTop">↑</div>
+    <script src="js/main.js"></script>
+</body>
+</html>

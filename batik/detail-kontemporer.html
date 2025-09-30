@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batik Kontemporer - Batik Nusantara</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .detail-hero {
+            background: linear-gradient(135deg, #E67E22 0%, #E67E22 100%);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            color: white;
+        }
+        .detail-hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .detail-container { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; }
+        .detail-image { border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); height: 600px; }
+        .detail-image img { width: 100%; height: 100%; object-fit: cover; }
+        .detail-content { background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .detail-content h2 { color: var(--primary-color); font-size: 2rem; margin-bottom: 1.5rem; }
+        .detail-content h3 { color: var(--secondary-color); font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; }
+        .detail-content p { line-height: 1.8; margin-bottom: 1.5rem; color: var(--text-dark); font-size: 1.1rem; }
+        .detail-info { background: var(--bg-light); padding: 1.5rem; border-radius: 15px; margin-top: 2rem; }
+        .detail-info ul { list-style: none; padding: 0; }
+        .detail-info li { padding: 0.8rem 0; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; }
+        .detail-info li:last-child { border-bottom: none; }
+        .detail-info li strong { color: var(--primary-color); margin-right: 0.5rem; min-width: 120px; }
+        .back-button { display: inline-block; padding: 1rem 2rem; background: white; color: #E67E22; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 1rem; transition: all 0.3s; }
+        .back-button:hover { background: #E67E22; color: white; transform: translateY(-3px); }
+        @media (max-width: 968px) {
+            .detail-container { grid-template-columns: 1fr; }
+            .detail-image { height: 400px; }
+            .detail-hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🎨 Batik Nusantara</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="about.html">Tentang</a></li>
+                <li><a href="gallery.html">Galeri</a></li>
+                 <li><a href="sejarah.html">Sejarah</a></li>
+                <li><a href="contact.html">Kontak</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="detail-hero">
+        <h1>Batik Kontemporer</h1>
+        <p>Batik Modern dengan Sentuhan Desain Kekinian</p>
+        <a href="gallery.html" class="back-button">← Kembali ke Galeri</a>
+    </section>
+
+    <div class="container">
+        <div class="detail-container">
+            <div class="detail-image">
+                <img src="images/kontemporer.jpg" alt="Batik Kontemporer">
+            </div>
+
+            <div class="detail-content">
+                <h2>Tentang Batik Kontemporer</h2>
+                <p>
+                    Batik Kontemporer adalah evolusi modern dari batik tradisional yang menggabungkan teknik klasik dengan desain, warna, dan motif yang lebih bebas dan inovatif. Batik kontemporer lahir dari kreativitas para desainer dan pengrajin yang ingin menjaga tradisi batik tetap relevan dengan zaman modern tanpa menghilangkan nilai budayanya.
+                </p>
+
+                <h3>Filosofi dan Makna</h3>
+                <p>
+                    Batik kontemporer melambangkan inovasi, kreativitas, dan adaptasi terhadap perkembangan zaman. Motif ini menunjukkan bahwa tradisi tidak harus statis, tetapi dapat berkembang dan beradaptasi dengan kebutuhan modern. Batik kontemporer membuktikan bahwa warisan budaya dapat tetap hidup dan berkembang melalui kreativitas generasi baru.
+                </p>
+
+                <h3>Sejarah dan Perkembangan</h3>
+                <p>
+                    Batik kontemporer mulai berkembang pesat sejak tahun 2000-an ketika para desainer muda Indonesia mulai bereksperimen dengan batik. Mereka menggabungkan teknik tradisional dengan desain modern, menciptakan produk yang menarik bagi generasi millennial dan Gen Z. Perkembangan teknologi printing digital juga turut mendorong popularitas batik kontemporer di pasar global.
+                </p>
+
+                <h3>Karakteristik Unik</h3>
+                <p>
+                    Batik kontemporer memiliki kebebasan dalam eksplorasi motif, warna, dan komposisi. Tidak terikat pada pakem-pakem tradisional, batik kontemporer menghadirkan desain abstrak, geometris modern, hingga ilustrasi kontemporer. Warna-warna yang digunakan lebih beragam dan berani, dari neon hingga pastel, disesuaikan dengan tren fashion masa kini.
+                </p>
+
+                <div class="detail-info">
+                    <h3>Informasi Detail</h3>
+                    <ul>
+                        <li><strong>Asal Daerah:</strong> Seluruh Indonesia</li>
+                        <li><strong>Jenis:</strong> Batik Modern</li>
+                        <li><strong>Warna Khas:</strong> Bebas dan Beragam</li>
+                        <li><strong>Filosofi:</strong> Inovasi dan kreativitas</li>
+                        <li><strong>Penggunaan:</strong> Fashion modern, streetwear</li>
+                        <li><strong>Status:</strong> Batik inovatif masa kini</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <section class="section">
+            <h2 class="section-title">Jenis Batik Kontemporer</h2>
+            <div class="content-box">
+                <p><strong>1. Batik Abstrak</strong> - Motif bebas dengan komposisi abstrak yang artistik dan unik.</p>
+                <p><strong>2. Batik Minimalis</strong> - Desain simpel dengan warna monokrom atau palet terbatas yang elegan.</p>
+                <p><strong>3. Batik Geometris Modern</strong> - Pola geometris kontemporer dengan garis tegas dan simetri modern.</p>
+                <p><strong>4. Batik Fusion</strong> - Perpaduan motif tradisional dengan elemen desain modern dari berbagai budaya.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Batik Nusantara</h3>
+                <p>Melestarikan warisan budaya Indonesia untuk generasi mendatang</p>
+            </div>
+            <div class="footer-section">
+                <h3>Menu</h3>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="about.html">Tentang</a></li>
+                    <li><a href="gallery.html">Galeri</a></li>
+                     <li><a href="sejarah.html">Sejarah</a></li>
+                    <li><a href="contact.html">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <p>📧 Email: info@smkn5malang.sch.id</p>
+                <p>📱 Telp: 0341-478195</p>
+                <p>📍Jl. Terusan Ikan Piranha Atas No.50, Tunjungsekar, Kec. Lowokwaru, Kota Malang, Jawa Timur 65142, Indonesia</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Batik Nusantara. Lestarikan Budaya Indonesia 🇮🇩</p>
+        </div>
+    </footer>
+
+    <div class="scroll-top" id="scrollTop">↑</div>
+    <script src="js/main.js"></script>
+</body>
+</html>

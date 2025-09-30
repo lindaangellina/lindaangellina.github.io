@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Batik - Batik Nusantara</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .gallery-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            color: white;
+        }
+
+        .gallery-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 3rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.8));
+            z-index: 1;
+        }
+
+        .gallery-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            color: white;
+            z-index: 2;
+        }
+
+        .gallery-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-info p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+        /* Gallery Link Styles */
+.gallery-grid a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gallery-grid a:hover {
+    transform: translateY(-5px);
+}
+
+.gallery-grid a:hover .gallery-item {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Tambahkan cursor pointer */
+.gallery-item {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Improve hover effect */
+.gallery-item:hover {
+    transform: scale(1.02);
+}
+
+/* Optional: Add active state */
+.gallery-grid a:active .gallery-item {
+    transform: scale(0.98);
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🎨 Batik Nusantara</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="about.html">Tentang</a></li>
+                <li><a href="gallery.html" class="active">Galeri</a></li>
+                <li><a href="sejarah.html">Sejarah</a></li>
+                <li><a href="contact.html">Kontak</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="gallery-header">
+        <h1>Galeri Batik Nusantara</h1>
+        <p>Koleksi motif dan jenis batik dari seluruh Indonesia</p>
+    </section>
+
+    <div class="container">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Semua</button>
+        </div>
+
+       <div class="gallery-grid">
+    <!-- Parang Rusak -->
+    <a href="detail-parang-rusak.html" style="text-decoration: none; color: inherit;">
+        <div class="gallery-item" data-category="jawa" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);">
+            <div class="gallery-info">
+                <img src="images/parang rusak1.jpg" alt="Parang Rusak" class="motif-pattern">
+                <h3>Parang Rusak</h3>
+                <p>Motif klasik dari Solo yang melambangkan kekuatan</p>
+            </div>
+        </div>
+    </a>
+
+           <!-- Mega Mendung -->
+    <a href="detail-mega-mendung.html" style="text-decoration: none; color: inherit;">
+        <div class="gallery-item" data-category="pesisir" style="background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);">
+            <div class="gallery-info">
+                <img src="images/mega mendung1.jpg" alt="Mega Mendung" class="motif-pattern">
+                <h3>Mega Mendung</h3>
+                <p>Batik khas Cirebon dengan motif awan</p>
+            </div>
+        </div>
+    </a>
+           <a href="detail-kawung.html" style="text-decoration: none; color: inherit;">
+        <div class="gallery-item" data-category="jawa" style="background: linear-gradient(135deg, #C85A54 0%, #9B3D38 100%);">
+            <div class="gallery-info">
+                <img src="images/kawung1.jpg" alt="Kawung" class="motif-pattern">
+                <h3>Kawung</h3>
+                <p>Motif geometris yang melambangkan kesucian</p>
+            </div>
+        </div>
+    </a>
+           <a href="detail-truntum.html" style="text-decoration: none; color: inherit;">
+            <div class="gallery-item" data-category="jawa" style="background: linear-gradient(135deg, #56AB2F 0%, #A8E063 100%);">
+                <div class="gallery-info">
+                     <img src="images/truntum1.jpg" alt="Truntum" class="motif-pattern">
+                    <h3>Truntum</h3>
+                    <p>Motif yang melambangkan cinta yang tumbuh kembali</p>
+                </div>
+            </div>
+    </a>
+
+     <a href="detail-madura.html" style="text-decoration: none; color: inherit;">
+            <div class="gallery-item" data-category="pesisir" style="background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);">
+                <div class="gallery-info">
+                     <img src="images/madura1.jpg" alt="Batik Madura" class="motif-pattern">
+                    <h3>Batik Madura</h3>
+                    <p>Warna berani dengan motif bunga khas pesisir</p>
+                </div>
+            </div>
+      </a>      
+   
+       <a href="detail-sekar-jagad.html" style="text-decoration: none; color: inherit;">
+            <div class="gallery-item" data-category="modern" style="background: linear-gradient(135deg, #F39C12 0%, #F1C40F 100%);">
+                <div class="gallery-info">
+                     <img src="images/sekar jagad1.jpg" alt="Sekar Jagad" class="motif-pattern">
+                    <h3>Sekar Jagad</h3>
+                    <p>Motif yang melambangkan keindahan dunia</p>
+                </div>
+            </div>
+         </a>
+         
+        <a href="detail-sido-mukti.html" style="text-decoration: none; color: inherit;">
+            <div class="gallery-item" data-category="jawa" style="background: linear-gradient(135deg, #9B59B6 0%, #8E44AD 100%);">
+                <div class="gallery-info">
+                     <img src="images/sido mukti1.jpg" alt="Sido Mukti" class="motif-pattern">
+                    <h3>Sido Mukti</h3>
+                    <p>Batik pengantin yang membawa kebahagiaan</p>
+                </div>
+            </div>
+         </a>   
+
+         <a href="detail-pekalongan.html" style="text-decoration: none; color: inherit;">
+            <div class="gallery-item" data-category="pesisir" style="background: linear-gradient(135deg, #16A085 0%, #1ABC9C 100%);">
+                <div class="gallery-info">
+                     <img src="images/pekalongan1.jpg" alt="Batik Pekalongan" class="motif-pattern">
+                    <h3>Batik Pekalongan</h3>
+                    <p>Perpaduan warna cerah khas pesisir utara</p>
+                </div>
+            </div>
+         </a>   
+
+         <a href="detail-kontemporer.html" style="text-decoration: none; color: inherit;">
+            <div class="gallery-item" data-category="modern" style="background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);">
+                <div class="gallery-info">
+                     <img src="images/kontemporer1.jpg" alt="Batik Kontemporer" class="motif-pattern">
+                    <h3>Batik Kontemporer</h3>
+                    <p>Batik modern dengan sentuhan desain kekinian</p>
+                </div>
+            </div>
+         </a>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Batik Nusantara</h3>
+                <p>Melestarikan warisan budaya Indonesia untuk generasi mendatang</p>
+            </div>
+            <div class="footer-section">
+                <h3>Menu</h3>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="about.html">Tentang</a></li>
+                    <li><a href="gallery.html">Galeri</a></li>
+                    <li><a href="sejarah.html">Sejarah</a></li>
+                    <li><a href="contact.html">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <p>📧 Email: info@smkn5malang.sch.id</p>
+                <p>📱 Telp: 0341-478195</p>
+                <p>📍 Jl. Terusan Ikan Piranha Atas No.50, Tunjungsekar, Kec. Lowokwaru, Kota Malang, Jawa Timur 65142, Indonesia</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Batik Nusantara. Lestarikan Budaya Indonesia 🇮🇩</p>
+        </div>
+    </footer>
+
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <!-- <script src="js/main.js"></script> -->
+    <!-- <script src="js/gallery.js"></script> -->
+</body>
+</html>
