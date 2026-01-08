@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelajaran 04: Order By</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .lesson-content-box {background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 20px;}
+        .lesson-header-box {margin-bottom: 30px;}
+        .lesson-number-badge {display: inline-block; background: #f29111; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9em; margin-bottom: 10px;}
+        h1 {color: #333; margin-bottom: 15px;}
+        h2 {color: #f29111; margin-top: 30px; margin-bottom: 15px; font-size: 1.5em;}
+        h3 {color: #333; margin-top: 25px; margin-bottom: 12px; font-size: 1.2em;}
+        p {line-height: 1.8; color: #555; margin-bottom: 15px;}
+        .code-block {background: #f8f9fa; border-left: 4px solid #f29111; padding: 20px; border-radius: 8px; margin: 20px 0; overflow-x: auto;}
+        pre {margin: 0; font-family: 'Courier New', monospace; color: #333;}
+        code {background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; color: #d63384;}
+        ul {line-height: 2; color: #555;}
+        .tip-box {background: #d1ecf1; border-left: 4px solid #0dcaf0; padding: 15px; border-radius: 8px; margin: 20px 0;}
+        .warning-box {background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; border-radius: 8px; margin: 20px 0;}
+        table {width: 100%; border-collapse: collapse; margin: 20px 0;}
+        th, td {border: 1px solid #dee2e6; padding: 12px; text-align: left;}
+        th {background: #f8f9fa; font-weight: 600; color: #333;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+        
+        <div class="lesson-content-box">
+            <div class="lesson-header-box">
+                <span class="lesson-number-badge">Pelajaran 04</span>
+                <h1>Order By</h1>
+                <p style="font-size: 1.1em; color: #666;">Atur urutan hasil query sehingga wawasan terpenting tampil di bagian atas.</p>
+            </div>
+
+            <h2>Dasar ORDER BY</h2>
+            <p><code>ORDER BY</code> dijalankan paling akhir setelah <code>SELECT</code> dievaluasi.</p>
+
+            <div class="code-block">
+                <pre>SELECT product_id, total_sales
+FROM `datasetku.sales_summary`
+ORDER BY total_sales DESC;</pre>
+            </div>
+
+            <p>Secara default BigQuery mengurutkan <code>ASC</code> (ascending/menaik).</p>
+
+            <h3>ASC vs DESC</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Keyword</th>
+                        <th>Arti</th>
+                        <th>Urutan</th>
+                        <th>Contoh</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>ASC</code></td>
+                        <td>Ascending</td>
+                        <td>Terkecil → Terbesar</td>
+                        <td>1, 2, 3, 4, 5</td>
+                    </tr>
+                    <tr>
+                        <td><code>DESC</code></td>
+                        <td>Descending</td>
+                        <td>Terbesar → Terkecil</td>
+                        <td>5, 4, 3, 2, 1</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Multi Kolom & Posisi</h2>
+            <p>Anda bisa mengurutkan berdasarkan beberapa kolom atau nomor posisi kolom di <code>SELECT</code>.</p>
+
+            <div class="code-block">
+                <pre>SELECT region, order_date, revenue
+FROM `datasetku.daily_revenue`
+ORDER BY region ASC, order_date DESC;
+
+-- contoh berdasarkan posisi
+SELECT region, order_date, revenue
+FROM `datasetku.daily_revenue`
+ORDER BY 1, 3 DESC;  -- 1 = region, 3 = revenue</pre>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 Tips:</strong> Gunakan penulisan eksplisit (nama kolom) agar query mudah dipelihara. Nomor posisi bisa membingungkan jika struktur SELECT berubah.
+            </div>
+
+            <h3>Prioritas Pengurutan Multi Kolom</h3>
+            <p>Saat menggunakan multiple columns, SQL akan:</p>
+            <ol>
+                <li>Urutkan berdasarkan kolom pertama</li>
+                <li>Jika ada nilai yang sama, urutkan berdasarkan kolom kedua</li>
+                <li>Dan seterusnya...</li>
+            </ol>
+
+            <div class="code-block">
+                <pre>SELECT
+  store_name,
+  category,
+  sales
+FROM `datasetku.sales`
+ORDER BY
+  store_name ASC,    -- Urutkan toko A-Z
+  sales DESC;        -- Dalam setiap toko, sales tertinggi dulu</pre>
+            </div>
+
+            <h2>Menangani NULL</h2>
+            <p><code>NULLS FIRST</code> / <code>NULLS LAST</code> mengontrol posisi nilai NULL.</p>
+
+            <div class="code-block">
+                <pre>SELECT name, score
+FROM `datasetku.students`
+ORDER BY score DESC NULLS LAST;</pre>
+            </div>
+
+            <p>Trik lain adalah mengganti NULL dengan nilai sentinel memakai <code>COALESCE</code>.</p>
+
+            <div class="code-block">
+                <pre>SELECT name, score
+FROM `datasetku.students`
+ORDER BY COALESCE(score, 0) DESC;</pre>
+            </div>
+
+            <h2>Paging dengan LIMIT/OFFSET</h2>
+            <p>Kombinasikan <code>ORDER BY</code> dengan <code>LIMIT</code> atau <code>OFFSET</code> untuk membuat pagination sederhana.</p>
+
+            <div class="code-block">
+                <pre>-- Halaman 1: 20 baris pertama
+SELECT * FROM `datasetku.products`
+ORDER BY created_at DESC
+LIMIT 20;
+
+-- Halaman 2: baris 21-40
+SELECT * FROM `datasetku.products`
+ORDER BY created_at DESC
+LIMIT 20 OFFSET 20;
+
+-- Halaman 3: baris 41-60
+SELECT * FROM `datasetku.products`
+ORDER BY created_at DESC
+LIMIT 20 OFFSET 40;</pre>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ Perhatian:</strong> Offset besar bisa menjadi mahal (performance-wise); pertimbangkan pencatatan posisi terakhir (keyset pagination) untuk dataset besar.
+            </div>
+
+            <h3>Keyset Pagination (Alternatif OFFSET)</h3>
+            <p>Untuk performa lebih baik pada dataset besar:</p>
+
+            <div class="code-block">
+                <pre>-- Halaman pertama
+SELECT * FROM `datasetku.products`
+ORDER BY created_at DESC, id DESC
+LIMIT 20;
+
+-- Halaman berikutnya (gunakan nilai terakhir dari halaman sebelumnya)
+SELECT * FROM `datasetku.products`
+WHERE
+  created_at < '2024-01-15 10:30:00'
+  OR (created_at = '2024-01-15 10:30:00' AND id < 12345)
+ORDER BY created_at DESC, id DESC
+LIMIT 20;</pre>
+            </div>
+
+            <h2>Stabilitas Urutan</h2>
+            <p>Jika beberapa baris punya nilai identik, tambahkan kolom penentu kedua (misalnya <code>id</code>) agar hasil deterministik.</p>
+
+            <div class="code-block">
+                <pre>-- TIDAK STABIL: Jika ada nilai score yang sama, urutannya bisa berubah
+SELECT student_id, score
+FROM `datasetku.exam_results`
+ORDER BY score DESC;
+
+-- STABIL: Urutan konsisten karena ada tiebreaker
+SELECT student_id, score
+FROM `datasetku.exam_results`
+ORDER BY score DESC, student_id ASC;</pre>
+            </div>
+
+            <h2>Contoh Praktis</h2>
+
+            <h3>Top 10 Produk Terlaris</h3>
+            <div class="code-block">
+                <pre>SELECT
+  product_name,
+  SUM(quantity) AS total_terjual,
+  SUM(revenue) AS total_pendapatan
+FROM `datasetku.order_items`
+GROUP BY product_name
+ORDER BY total_terjual DESC
+LIMIT 10;</pre>
+            </div>
+
+            <h3>Pelanggan dengan Transaksi Terbaru</h3>
+            <div class="code-block">
+                <pre>SELECT
+  customer_id,
+  customer_name,
+  last_order_date,
+  total_orders
+FROM `datasetku.customer_summary`
+ORDER BY last_order_date DESC NULLS LAST
+LIMIT 50;</pre>
+            </div>
+
+            <h3>Ranking dengan Beberapa Kriteria</h3>
+            <div class="code-block">
+                <pre>SELECT
+  employee_id,
+  department,
+  performance_score,
+  years_of_service
+FROM `datasetku.employees`
+ORDER BY
+  department ASC,              -- Grup per departemen
+  performance_score DESC,      -- Performa tertinggi dulu
+  years_of_service DESC;       -- Jika sama, yang lebih senior</pre>
+            </div>
+
+            <h2>Best Practice</h2>
+            <ul>
+                <li>Selalu gunakan <code>ORDER BY</code> jika urutan data penting untuk analisis</li>
+                <li>Tambahkan kolom unik (seperti <code>id</code>) sebagai tiebreaker untuk hasil yang konsisten</li>
+                <li>Gunakan <code>DESC</code> untuk menonjolkan nilai tertinggi/terbesar</li>
+                <li>Kombinasikan dengan <code>LIMIT</code> untuk Top N queries</li>
+                <li>Hindari <code>OFFSET</code> besar; gunakan keyset pagination untuk dataset masif</li>
+                <li>Handle NULL values secara eksplisit dengan <code>NULLS FIRST/LAST</code> atau <code>COALESCE</code></li>
+            </ul>
+
+            <h2>Ringkasan</h2>
+            <p><code>ORDER BY</code> adalah klausa penting untuk menyajikan data dalam urutan yang meaningful. Dengan memahami cara kerja sorting, handling NULL, dan pagination, Anda dapat membuat query yang menghasilkan insight yang mudah dipahami dan actionable.</p>
+        </div>
+
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+    </div>
+
+    <script src="../../js/script.js"></script>
+</body>
+</html>

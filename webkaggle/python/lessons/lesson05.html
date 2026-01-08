@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelajaran 05: Perulangan & List Comprehension</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .lesson-content-box {background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 20px;}
+        .lesson-header-box {margin-bottom: 30px;}
+        .lesson-number-badge {display: inline-block; background: #667eea; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9em; margin-bottom: 10px;}
+        h1 {color: #333; margin-bottom: 15px;}
+        h2 {color: #667eea; margin-top: 30px; margin-bottom: 15px; font-size: 1.5em;}
+        h3 {color: #333; margin-top: 25px; margin-bottom: 12px; font-size: 1.2em;}
+        p {line-height: 1.8; color: #555; margin-bottom: 15px;}
+        .code-block {background: #f8f9fa; border-left: 4px solid #667eea; padding: 20px; border-radius: 8px; margin: 20px 0; overflow-x: auto;}
+        pre {margin: 0; font-family: 'Courier New', monospace; color: #333;}
+        code {background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; color: #d63384;}
+        ul, ol {line-height: 2; color: #555;}
+        .tip-box {background: #d1ecf1; border-left: 4px solid #0dcaf0; padding: 15px; border-radius: 8px; margin: 20px 0;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+        
+        <div class="lesson-content-box">
+            <div class="lesson-header-box">
+                <span class="lesson-number-badge">Pelajaran 05</span>
+                <h1>Perulangan & List Comprehension</h1>
+                <p style="font-size: 1.1em; color: #666;">Perulangan membantu menjalankan blok kode berulang kali, sedangkan list comprehension memberi cara ringkas untuk membangun list baru dari iterasi yang sama.</p>
+            </div>
+
+            <h2>Mengapa Perulangan Penting?</h2>
+            <p>Loop adalah pola inti ketika ingin memproses sekumpulan nilai. Dengan loop, kita bisa membaca daftar planet, menghitung total, mencari pola huruf, atau menjalankan aksi berkali-kali tanpa menulis kode yang sama berulang.</p>
+
+            <h2>For Loop pada List</h2>
+            <p>Contoh klasik:</p>
+
+            <div class="code-block">
+                <pre>planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+for planet in planets:
+    print(planet, end=' ')
+# Output: Mercury Venus Earth Mars Jupiter Saturn Uranus Neptune</pre>
+            </div>
+
+            <p>Komponen for loop:</p>
+            <ol>
+                <li>Nama variabel untuk tiap elemen (mis. <code>planet</code>)</li>
+                <li>Kumpulan nilai yang diiterasi (mis. list <code>planets</code>)</li>
+                <li>Kata kunci <code>in</code> yang menghubungkannya</li>
+            </ol>
+
+            <p>Objek di sisi kanan <code>in</code> bisa list, tuple, string, atau apa pun yang iterable.</p>
+
+            <h2>Iterasi pada Tuple</h2>
+            <div class="code-block">
+                <pre>multiplicands = (2, 2, 2, 3, 3, 5)
+product = 1
+for mult in multiplicands:
+    product = product * mult
+print(product)
+# Output: 360</pre>
+            </div>
+
+            <p>Tuple bersifat immutable tetapi tetap dapat diiterasi satu per satu.</p>
+
+            <h2>Loop pada String</h2>
+            <div class="code-block">
+                <pre>s = 'steganograpHy is the practicE of conceaLing a file, message, image, or video within another fiLe, message, image, Or video.'
+msg = ''
+for char in s:
+    if char.isupper():
+        print(char, end='')
+# Output: HELLO</pre>
+            </div>
+
+            <p>Loop juga bisa menelusuri setiap karakter, berguna untuk validasi teks atau ekstraksi pola.</p>
+
+            <h2>Fungsi range()</h2>
+            <p><code>range()</code> menghasilkan deret angka dan sering dipakai untuk mengulang aksi dengan jumlah tertentu.</p>
+
+            <div class="code-block">
+                <pre>for i in range(5):
+    print("Doing important work. i =", i)
+# Output:
+# i = 0
+# i = 1
+# i = 2
+# i = 3
+# i = 4</pre>
+            </div>
+
+            <h2>While Loop</h2>
+            <p><code>while</code> menjalankan blok selama kondisi masih <code>True</code>.</p>
+
+            <div class="code-block">
+                <pre>i = 0
+while i < 10:
+    print(i, end=' ')
+    i += 1
+# Output: 0 1 2 3 4 5 6 7 8 9</pre>
+            </div>
+
+            <p>Kondisi dievaluasi sebagai boolean di setiap iterasi, jadi pastikan variabel kontrol berubah agar loop berhenti.</p>
+
+            <h2>List Comprehension Dasar</h2>
+            <p>Cara ringkas untuk membuat list baru:</p>
+
+            <div class="code-block">
+                <pre>squares = [n**2 for n in range(10)]
+print(squares)
+# Output: [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</pre>
+            </div>
+
+            <p>Tanpa comprehension:</p>
+
+            <div class="code-block">
+                <pre>squares = []
+for n in range(10):
+    squares.append(n**2)
+print(squares)</pre>
+            </div>
+
+            <h2>List Comprehension dengan Kondisi</h2>
+            <div class="code-block">
+                <pre>short_planets = [planet for planet in planets if len(planet) < 6]
+print(short_planets)
+# Output: ['Venus', 'Earth', 'Mars']
+
+loud_short_planets = [planet.upper() + '!' for planet in planets if len(planet) < 6]
+print(loud_short_planets)
+# Output: ['VENUS!', 'EARTH!', 'MARS!']</pre>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 Tips SQL-like:</strong> Struktur comprehension mirip SQL: ekspresi (SELECT), sumber data (FROM), dan filter (WHERE).
+            </div>
+
+            <h2>Penulisan Multi-baris dan Variasi</h2>
+            <div class="code-block">
+                <pre>[
+    planet.upper() + '!'
+    for planet in planets
+    if len(planet) < 6
+]
+
+# Ekspresi konstan
+[32 for planet in planets]  # [32, 32, 32, 32, 32, 32, 32, 32]</pre>
+            </div>
+
+            <p>Ekspresi kiri tidak harus memakai variabel loop, walau praktiknya jarang. Gabungkan dengan <code>min</code>, <code>max</code>, atau <code>sum</code> untuk solusi satu baris yang ekspresif.</p>
+
+            <h2>Studi Kasus: count_negatives</h2>
+            <p><strong>Versi 1: Loop biasa</strong></p>
+            <div class="code-block">
+                <pre>def count_negatives(nums):
+    """Return the number of negative numbers in the given list."""
+    n_negative = 0
+    for num in nums:
+        if num < 0:
+            n_negative = n_negative + 1
+    return n_negative</pre>
+            </div>
+
+            <p><strong>Versi 2: List comprehension + len</strong></p>
+            <div class="code-block">
+                <pre>def count_negatives(nums):
+    return len([num for num in nums if num < 0])</pre>
+            </div>
+
+            <p><strong>Versi 3: Boolean sum (paling ringkas!)</strong></p>
+            <div class="code-block">
+                <pre>def count_negatives(nums):
+    return sum([num < 0 for num in nums])</pre>
+            </div>
+
+            <p>Versi terakhir memanfaatkan fakta bahwa <code>True</code> bernilai 1 dan <code>False</code> bernilai 0 ketika dijumlahkan.</p>
+
+            <h2>Catatan Readability</h2>
+            <p>The Zen of Python mengingatkan bahwa <em>"Readability counts"</em> dan <em>"Explicit is better than implicit"</em>. Gunakan list comprehension untuk kode yang padat namun tetap mudah dipahami; jika logika mulai sulit diikuti, kembali ke loop biasa agar tim lain nyaman membacanya.</p>
+        </div>
+
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+    </div>
+
+    <script src="../../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelajaran 07: Pustaka Eksternal</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .lesson-content-box {background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 20px;}
+        .lesson-header-box {margin-bottom: 30px;}
+        .lesson-number-badge {display: inline-block; background: #667eea; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9em; margin-bottom: 10px;}
+        h1 {color: #333; margin-bottom: 15px;}
+        h2 {color: #667eea; margin-top: 30px; margin-bottom: 15px; font-size: 1.5em;}
+        h3 {color: #333; margin-top: 25px; margin-bottom: 12px; font-size: 1.2em;}
+        p {line-height: 1.8; color: #555; margin-bottom: 15px;}
+        .code-block {background: #f8f9fa; border-left: 4px solid #667eea; padding: 20px; border-radius: 8px; margin: 20px 0; overflow-x: auto;}
+        pre {margin: 0; font-family: 'Courier New', monospace; color: #333;}
+        code {background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; color: #d63384;}
+        ul {line-height: 2; color: #555;}
+        .warning-box {background: #f8d7da; border-left: 4px solid #dc3545; padding: 15px; border-radius: 8px; margin: 20px 0;}
+        .tip-box {background: #d1ecf1; border-left: 4px solid #0dcaf0; padding: 15px; border-radius: 8px; margin: 20px 0;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+        
+        <div class="lesson-content-box">
+            <div class="lesson-header-box">
+                <span class="lesson-number-badge">Pelajaran 07</span>
+                <h1>Pustaka Eksternal</h1>
+                <p style="font-size: 1.1em; color: #666;">Import membuka akses ke pustaka standard maupun pihak ketiga seperti math, numpy, pandas, dan tensorflow. Pelajaran ini memandu sintaks import, submodul, dan cara membaca objek asing.</p>
+            </div>
+
+            <h2>Mengapa Import?</h2>
+            <p>Selain tipe bawaan, Python punya ribuan library. Sebagian berada di standard library, sisanya dipasang lewat pip. Semuanya diakses melalui kata kunci <code>import</code>.</p>
+
+            <div class="code-block">
+                <pre>import math
+
+print("It's math! It has type {}".format(type(math)))</pre>
+            </div>
+
+            <p>Output menunjukkan bahwa <code>math</code> adalah modul (namespace berisi variabel dan fungsi).</p>
+
+            <h2>Menyelami Modul math</h2>
+            <p>Lihat seluruh nama yang tersedia dengan <code>dir()</code>, lalu akses via dot notation.</p>
+
+            <div class="code-block">
+                <pre>print(dir(math))
+print("pi ke 4 digit signifikan = {:.4}".format(math.pi))
+print(math.log(32, 2))  # 5.0
+help(math.log)</pre>
+            </div>
+
+            <p><code>help(math)</code> menampilkan dokumentasi gabungan untuk seluruh anggota modul.</p>
+
+            <h2>Sintaks Import Alternatif</h2>
+            <p>Alih nama modul agar lebih singkat atau impor simbol spesifik.</p>
+
+            <div class="code-block">
+                <pre>import math as mt
+print(mt.pi)
+
+from math import log, pi
+print(pi, log(32, 2))</pre>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ Peringatan:</strong> <code>from module import *</code> membuat semua nama tersedia langsung, namun berisiko bentrok.
+            </div>
+
+            <div class="code-block">
+                <pre>from math import *
+from numpy import *
+# print(pi, log(32, 2))  # TypeError: fungsi log numpy menimpa versi math</pre>
+            </div>
+
+            <h2>Submodul dan Namespace Bersarang</h2>
+            <p>Modul dapat berisi modul lain. Contoh, <code>numpy.random</code> adalah submodul.</p>
+
+            <div class="code-block">
+                <pre>import numpy
+print(type(numpy.random))
+print(dir(numpy.random)[-10:])
+
+rolls = numpy.random.randint(low=1, high=6, size=10)
+print(rolls)</pre>
+            </div>
+
+            <p>Pemanggilan butuh dua titik: <code>numpy.random.randint</code>.</p>
+
+            <h2>Panduan Mengenal Objek Aneh</h2>
+            <p>Gunakan tiga fungsi bawaan untuk memahami tipe baru: <code>type()</code>, <code>dir()</code>, dan <code>help()</code>.</p>
+
+            <div class="code-block">
+                <pre>type(rolls)          # numpy.ndarray
+print(dir(rolls))
+print(rolls.mean())
+print(rolls.tolist())
+help(rolls.ravel)</pre>
+            </div>
+
+            <p><code>help(rolls)</code> menampilkan dokumentasi lengkap mengenai <code>ndarray</code>.</p>
+
+            <h2>Operator Overloading</h2>
+            <p>Tipe custom dapat mendefinisikan ulang operator.</p>
+
+            <div class="code-block">
+                <pre># [3, 4, 1] + 10  # TypeError
+rolls + 10      # setiap elemen ditambah 10
+
+rolls <= 3      # menghasilkan array boolean
+
+xlist = [[1, 2, 3], [2, 4, 6]]
+x = numpy.asarray(xlist)
+print(x[1, -1])  # 6
+# print(xlist[1, -1])  # TypeError: list tidak mendukung tuple indexing</pre>
+            </div>
+
+            <p><code>ndarray</code> mendukung indexing multi dimensi karena perancangnya memang meng-overload operator terkait.</p>
+
+            <h2>Kejutan TensorFlow</h2>
+            <div class="code-block">
+                <pre>import tensorflow as tf
+
+a = tf.constant(1)
+b = tf.constant(1)
+print(a + b)
+# Hasilnya bukan angka 2, melainkan tf.Tensor</pre>
+            </div>
+
+            <p>Hasilnya bukan angka 2, melainkan <code>tf.Tensor</code> yang merupakan handle simbolik ke operasi penjumlahan. Banyak library (termasuk pandas) memanfaatkan operator overloading secara kreatif.</p>
+
+            <div class="code-block">
+                <pre># Contoh di pandas (pseudo)
+df[(df['population'] > 10**6) & (df['continent'] == 'South America')]</pre>
+            </div>
+
+            <p>Ekspresi tersebut mengandalkan beberapa operator yang telah dioverride.</p>
+
+            <h2>Memahami Nama Magic</h2>
+            <p><code>dir(list)</code> menampilkan banyak metode dengan double underscore seperti <code>__contains__</code> atau <code>__add__</code>. Metode inilah yang dipanggil Python saat Anda memakai operator.</p>
+
+            <div class="code-block">
+                <pre>print('__contains__' in dir(list))  # True
+print([1, 2, 3].__contains__(2))    # True, ekuivalen dengan 2 in [1, 2, 3]</pre>
+            </div>
+
+            <p>Mengetahui konvensi ini membantu saat membaca dokumentasi tipe khusus.</p>
+
+            <div class="tip-box">
+                <strong>💡 Tips Praktis:</strong> Tiga fungsi untuk eksplorasi library:
+                <ul style="margin-top: 10px;">
+                    <li><code>type(obj)</code> - Mengetahui tipe objek</li>
+                    <li><code>dir(obj)</code> - Melihat atribut dan metode yang tersedia</li>
+                    <li><code>help(obj)</code> - Membaca dokumentasi lengkap</li>
+                </ul>
+            </div>
+
+            <h2>Ringkasan</h2>
+            <p>Gunakan <code>import</code> untuk membuka kemampuan baru, pahami namespace modul dengan <code>dir()</code> dan <code>help()</code>, berhati-hatilah terhadap <code>from module import *</code>, dan ingat bahwa operator bisa berperilaku beda pada tiap tipe. Dengan pemahaman ini, Anda akan lebih percaya diri menjelajah ekosistem Python yang luas.</p>
+        </div>
+
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+    </div>
+
+    <script src="../../js/script.js"></script>
+</body>
+</html>

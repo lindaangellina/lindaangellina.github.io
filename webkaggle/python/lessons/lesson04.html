@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelajaran 04: List</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .lesson-content-box {background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 20px;}
+        .lesson-header-box {margin-bottom: 30px;}
+        .lesson-number-badge {display: inline-block; background: #667eea; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9em; margin-bottom: 10px;}
+        h1 {color: #333; margin-bottom: 15px;}
+        h2 {color: #667eea; margin-top: 30px; margin-bottom: 15px; font-size: 1.5em;}
+        h3 {color: #333; margin-top: 25px; margin-bottom: 12px; font-size: 1.2em;}
+        p {line-height: 1.8; color: #555; margin-bottom: 15px;}
+        .code-block {background: #f8f9fa; border-left: 4px solid #667eea; padding: 20px; border-radius: 8px; margin: 20px 0; overflow-x: auto;}
+        pre {margin: 0; font-family: 'Courier New', monospace; color: #333;}
+        code {background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; color: #d63384;}
+        ul {line-height: 2; color: #555;}
+        .warning-box {background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; border-radius: 8px; margin: 20px 0;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+        
+        <div class="lesson-content-box">
+            <div class="lesson-header-box">
+                <span class="lesson-number-badge">Pelajaran 04</span>
+                <h1>List</h1>
+                <p style="font-size: 1.1em; color: #666;">List mewakili urutan bernilai di Python. Modul ini mencakup pembuatan list, indexing, slicing, mutasi, fungsi bawaan, metode, pencarian, dan perbandingan dengan tuple.</p>
+            </div>
+
+            <h2>Mengenal List</h2>
+            <p>List dibuat memakai kurung siku dan dapat berisi angka, string, maupun list lain.</p>
+
+            <div class="code-block">
+                <pre>primes = [2, 3, 5, 7]
+planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+hands = [
+    ['J', 'Q', 'K'],
+    ['2', '2', '2'],
+    ['6', 'A', 'K'],
+]
+my_favourite_things = [32, 'raindrops on roses', help]</pre>
+            </div>
+
+            <h2>Indexing</h2>
+            <p>Akses elemen tunggal dengan indeks berbasis nol. Gunakan indeks negatif untuk menghitung dari belakang.</p>
+
+            <div class="code-block">
+                <pre>planets[0]   # 'Mercury'
+planets[1]   # 'Venus'
+planets[-1]  # 'Neptune'
+planets[-2]  # 'Uranus'</pre>
+            </div>
+
+            <h2>Slicing</h2>
+            <p>Slicing menggunakan notasi <code>list[start:end]</code> dan <code>end</code> tidak termasuk.</p>
+
+            <div class="code-block">
+                <pre>planets[0:3]   # ['Mercury', 'Venus', 'Earth']
+planets[:3]    # ['Mercury', 'Venus', 'Earth']
+planets[3:]    # ['Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+planets[1:-1]  # ['Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus']
+planets[-3:]   # ['Saturn', 'Uranus', 'Neptune']</pre>
+            </div>
+
+            <p><code>start</code> atau <code>end</code> boleh dikosongkan dan Python akan menganggapnya awal/akhir list.</p>
+
+            <h2>Mengubah List (Mutable)</h2>
+            <p>List bisa diubah di tempat. Penugasan ke indeks atau slice akan memodifikasi nilai.</p>
+
+            <div class="code-block">
+                <pre>planets[3] = 'Malacandra'
+planets[:3] = ['Mur', 'Vee', 'Ur']
+print(planets)
+
+# Kembalikan ke semula
+planets[:4] = ['Mercury', 'Venus', 'Earth', 'Mars']</pre>
+            </div>
+
+            <h2>Fungsi Bawaan Berguna</h2>
+            <ul>
+                <li><code>len(planets)</code> menghitung elemen</li>
+                <li><code>sorted(planets)</code> mengembalikan list baru yang terurut</li>
+                <li><code>sum(primes)</code> menjumlahkan angka</li>
+                <li><code>min(primes)</code> dan <code>max(primes)</code> mencari nilai ekstrem</li>
+            </ul>
+
+            <div class="code-block">
+                <pre>len(planets)      # 8
+sorted(planets)   # Urutan alfabetis
+primes = [2, 3, 5, 7]
+sum(primes)       # 17
+max(primes)       # 7</pre>
+            </div>
+
+            <h2>Sekilas mengenai Objek</h2>
+            <p>Semua di Python adalah objek lengkap dengan atribut dan metode, diakses lewat tanda titik.</p>
+
+            <div class="code-block">
+                <pre>x = 12
+print(x.imag)           # 0 (bagian imajiner)
+
+c = 12 + 3j
+print(c.imag)           # 3.0
+
+print(x.bit_length())   # 4
+help(x.bit_length)</pre>
+            </div>
+
+            <p>Metode adalah fungsi yang menempel pada objek (mis. <code>bit_length</code> pada integer).</p>
+
+            <h2>Metode List</h2>
+            <p>List memiliki metode seperti <code>append</code> dan <code>pop</code> untuk memodifikasi isi.</p>
+
+            <div class="code-block">
+                <pre>planets.append('Pluto')
+print(planets)
+# ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto']
+
+planets.pop()
+print(planets)
+# ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+
+help(planets.append)</pre>
+            </div>
+
+            <h2>Mencari dalam List</h2>
+            <p>Pakai <code>index</code> untuk menemukan posisi elemen dan operator <code>in</code> untuk pengecekan keberadaan.</p>
+
+            <div class="code-block">
+                <pre>planets.index('Earth')          # 2
+'Earth' in planets              # True
+'Calbefraques' in planets       # False</pre>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ Perhatian:</strong> <code>planets.index('Pluto')</code> akan memunculkan <code>ValueError</code> karena Pluto tidak lagi di list.
+            </div>
+
+            <h2>Tuples</h2>
+            <p>Tuple mirip list tetapi memakai kurung biasa dan immutable (tidak bisa diubah).</p>
+
+            <div class="code-block">
+                <pre>t = (1, 2, 3)
+t = 1, 2, 3      # Kurung opsional
+
+# t[0] = 100     # TypeError: tuple tidak mendukung item assignment
+
+x = 0.125
+num, den = x.as_integer_ratio()
+print(num / den)  # 0.125
+
+# Swap variables dengan tuple
+a, b = 1, 0
+a, b = b, a
+print(a, b)  # 0 1</pre>
+            </div>
+
+            <p>Tuple sering digunakan untuk mengembalikan beberapa nilai dari satu fungsi.</p>
+
+            <h2>Ringkasan</h2>
+            <p>List adalah struktur data fundamental di Python yang mutable dan mendukung indexing, slicing, serta berbagai metode untuk manipulasi data. Tuple memberikan alternatif immutable yang berguna untuk data yang tidak boleh berubah.</p>
+        </div>
+
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+    </div>
+
+    <script src="../../js/script.js"></script>
+</body>
+</html>

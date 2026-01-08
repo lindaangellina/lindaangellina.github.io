@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelajaran 01: Mulai dengan SQL & BigQuery</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .lesson-content-box {background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 20px;}
+        .lesson-header-box {margin-bottom: 30px;}
+        .lesson-number-badge {display: inline-block; background: #f29111; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9em; margin-bottom: 10px;}
+        h1 {color: #333; margin-bottom: 15px;}
+        h2 {color: #f29111; margin-top: 30px; margin-bottom: 15px; font-size: 1.5em;}
+        h3 {color: #333; margin-top: 25px; margin-bottom: 12px; font-size: 1.2em;}
+        p {line-height: 1.8; color: #555; margin-bottom: 15px;}
+        .code-block {background: #f8f9fa; border-left: 4px solid #f29111; padding: 20px; border-radius: 8px; margin: 20px 0; overflow-x: auto;}
+        pre {margin: 0; font-family: 'Courier New', monospace; color: #333;}
+        code {background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; color: #d63384;}
+        ul {line-height: 2; color: #555;}
+        .intro-box {background: #fff3cd; border-left: 4px solid #ffc107; padding: 20px; border-radius: 8px; margin: 20px 0;}
+        .warning-box {background: #f8d7da; border-left: 4px solid #dc3545; padding: 15px; border-radius: 8px; margin: 20px 0;}
+        .diagram-box {background: #e7f3ff; border: 2px dashed #2196F3; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+        
+        <div class="lesson-content-box">
+            <div class="lesson-header-box">
+                <span class="lesson-number-badge">Pelajaran 01</span>
+                <h1>Mulai dengan SQL & BigQuery</h1>
+                <p style="font-size: 1.1em; color: #666;">Kenali alur dasar BigQuery: membuat client, menjelajah dataset publik, memeriksa skema tabel, dan mempratinjau baris sebelum menulis query besar.</p>
+            </div>
+
+            <h2>Pendahuluan</h2>
+            <p>Structured Query Language (SQL) adalah bahasa utama untuk berinteraksi dengan database. Di Kaggle Learn, kita menggunakan <strong>BigQuery</strong>—layanan berbasis web yang mampu menjalankan SQL pada dataset berukuran terabita—untuk melatih keterampilan ini.</p>
+            <p>Pelajaran ini berfokus pada cara mengakses dan memeriksa dataset BigQuery sehingga Anda siap membangun query lebih kompleks di materi berikutnya.</p>
+
+            <h2>Perintah BigQuery Pertama</h2>
+            <p>Kita bekerja di lingkungan notebook Kaggle yang sudah menyiapkan kredensial BigQuery. Langkah pertama adalah mengimpor paket resmi dan membuat objek <code>Client</code> yang akan menangani seluruh permintaan.</p>
+
+            <div class="code-block">
+                <pre>from google.cloud import bigquery
+
+# Membuat objek Client
+client = bigquery.Client()</pre>
+            </div>
+
+            <p><code>Client</code> inilah yang akan kita gunakan untuk merujuk dataset, mengakses tabel, dan menjalankan query.</p>
+
+            <h2>Mengakses Dataset Publik</h2>
+            <p>Contoh yang digunakan di kursus ini berasal dari kumpulan data <code>hacker_news</code> dalam project <code>bigquery-public-data</code>. Setiap dataset berada di dalam sebuah project, dan kita perlu membuat referensi sebelum mengaksesnya.</p>
+
+            <div class="code-block">
+                <pre># Referensi ke dataset "hacker_news"
+dataset_ref = client.dataset("hacker_news", project="bigquery-public-data")
+
+# Permintaan API untuk mengambil dataset
+dataset = client.get_dataset(dataset_ref)</pre>
+            </div>
+
+            <p>Setiap dataset adalah kumpulan tabel. Gunakan <code>list_tables()</code> untuk melihat daftar tabel yang tersedia.</p>
+
+            <div class="code-block">
+                <pre>tables = list(client.list_tables(dataset))
+for table in tables:
+    print(table.table_id)
+# Output:
+# comments
+# full
+# full_201510
+# stories</pre>
+            </div>
+
+            <h2>Mengambil Tabel</h2>
+            <p>Setelah dataset diketahui, kita dapat mengambil salah satu tabel di dalamnya. Pada contoh ini kita menggunakan tabel <code>full</code>.</p>
+
+            <div class="code-block">
+                <pre># Referensi ke tabel "full"
+table_ref = dataset_ref.table("full")
+
+# Ambil objek tabel dari BigQuery
+table = client.get_table(table_ref)</pre>
+            </div>
+
+            <div class="diagram-box">
+                <strong>📊 Diagram Alur:</strong><br>
+                Buat Client → Referensikan Dataset → Daftar Tabel → Ambil Tabel → Cek Skema
+            </div>
+
+            <h2>Memahami Skema</h2>
+            <p>Skema mendeskripsikan struktur tabel. Gunakan <code>table.schema</code> untuk menampilkan daftar <code>SchemaField</code>.</p>
+
+            <div class="code-block">
+                <pre>table.schema
+# Output:
+# [SchemaField('title', 'STRING', 'NULLABLE', 'Story title', ...),
+#  SchemaField('url', 'STRING', ...), ...]</pre>
+            </div>
+
+            <p>Setiap <code>SchemaField</code> berisi nama kolom, tipe data, mode (misalnya <code>NULLABLE</code>), dan deskripsi. Misalnya:</p>
+
+            <div class="code-block">
+                <pre>SchemaField('by', 'STRING', 'NULLABLE', "The username of the item's author.")</pre>
+            </div>
+
+            <p>Artinya kolom bernama <code>by</code>, bertipe string, memperbolehkan NULL, dan menyimpan username penulis.</p>
+
+            <h2>Pratinjau Isi Tabel</h2>
+            <p>Gunakan <code>list_rows()</code> untuk melihat sebagian baris dan memastikan deskripsi kolom akurat. Hasilnya berupa <code>RowIterator</code> yang dapat dikonversi menjadi DataFrame pandas.</p>
+
+            <div class="code-block">
+                <pre># 5 baris pertama dari tabel "full"
+client.list_rows(table, max_results=5).to_dataframe()</pre>
+            </div>
+
+            <div class="intro-box">
+                <strong>💡 Catatan:</strong> Peringatan yang muncul (tentang <code>bqstorage_client</code>) normal karena kita memberi batas hasil sehingga BigQuery memakai endpoint berbeda.
+            </div>
+
+            <h2>Pratinjau Kolom Tertentu</h2>
+            <p>Kita bisa fokus pada kolom tertentu dengan parameter <code>selected_fields</code> agar tidak mengambil seluruh tabel.</p>
+
+            <div class="code-block">
+                <pre># 5 entri pertama kolom "by"
+client.list_rows(
+    table,
+    selected_fields=table.schema[:1],
+    max_results=5
+).to_dataframe()</pre>
+            </div>
+
+            <p>Cara ini berguna untuk memeriksa kolom yang ingin digunakan tanpa membaca seluruh tabel.</p>
+
+            <h2>Pengingat Kuota</h2>
+            <div class="warning-box">
+                <strong>⚠️ Penting:</strong> Kaggle memberikan kuota gratis <strong>5 TB</strong> data yang boleh di-scan setiap 30 hari.
+            </div>
+
+            <p>Gerakan eksplorasi di atas sangat ringan dan aman dijalankan kapan saja, tetapi tetap ikuti praktik terbaik berikut:</p>
+
+            <ul>
+                <li>Hindari <code>SELECT *</code> pada tabel masif tanpa filter</li>
+                <li>Gunakan <code>LIMIT</code> dan <code>WHERE</code> untuk mengecilkan volume data</li>
+                <li>Simpan query yang sudah siap pakai agar tidak perlu menjalankannya berulang</li>
+            </ul>
+
+            <h2>Ringkasan</h2>
+            <p>Setelah pelajaran ini Anda seharusnya mampu:</p>
+            <ul>
+                <li>Menginisiasi Client BigQuery dan menghubungkannya dengan dataset publik</li>
+                <li>Menelusuri daftar tabel, membaca skema, serta mempratinjau baris atau kolom tertentu</li>
+                <li>Mengelola kuota dengan disiplin menggunakan LIMIT dan filter sejak awal</li>
+            </ul>
+
+            <p>Langkah selanjutnya adalah menulis query SQL penuh untuk memilih kolom dan menyaring baris.</p>
+        </div>
+
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+    </div>
+
+    <script src="../../js/script.js"></script>
+</body>
+</html>

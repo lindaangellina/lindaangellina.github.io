@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelajaran 06: Menggabungkan Data</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .lesson-content-box {background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 20px;}
+        .lesson-header-box {margin-bottom: 30px;}
+        .lesson-number-badge {display: inline-block; background: #f29111; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9em; margin-bottom: 10px;}
+        h1 {color: #333; margin-bottom: 15px;}
+        h2 {color: #f29111; margin-top: 30px; margin-bottom: 15px; font-size: 1.5em;}
+        h3 {color: #333; margin-top: 25px; margin-bottom: 12px; font-size: 1.2em;}
+        p {line-height: 1.8; color: #555; margin-bottom: 15px;}
+        .code-block {background: #f8f9fa; border-left: 4px solid #f29111; padding: 20px; border-radius: 8px; margin: 20px 0; overflow-x: auto;}
+        pre {margin: 0; font-family: 'Courier New', monospace; color: #333;}
+        code {background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; color: #d63384;}
+        ul {line-height: 2; color: #555;}
+        table {width: 100%; border-collapse: collapse; margin: 20px 0;}
+        th, td {border: 1px solid #dee2e6; padding: 12px; text-align: left;}
+        th {background: #f8f9fa; font-weight: 600; color: #333;}
+        .tip-box {background: #d1ecf1; border-left: 4px solid #0dcaf0; padding: 15px; border-radius: 8px; margin: 20px 0;}
+        .warning-box {background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; border-radius: 8px; margin: 20px 0;}
+        .checklist-box {background: #d4edda; border-left: 4px solid #28a745; padding: 15px; border-radius: 8px; margin: 20px 0;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+        
+        <div class="lesson-content-box">
+            <div class="lesson-header-box">
+                <span class="lesson-number-badge">Pelajaran 06</span>
+                <h1>Menggabungkan Data</h1>
+                <p style="font-size: 1.1em; color: #666;">Pelajari ragam teknik join untuk menggabungkan sumber data dan menjawab pertanyaan bisnis kompleks.</p>
+            </div>
+
+            <h2>Inner Join</h2>
+            <p>Mengembalikan baris yang cocok di kedua tabel.</p>
+
+            <div class="code-block">
+                <pre>SELECT o.order_id, c.customer_name
+FROM `datasetku.orders` AS o
+JOIN `datasetku.customers` AS c
+  ON o.customer_id = c.customer_id;</pre>
+            </div>
+
+            <p>Gunakan <code>USING (column)</code> jika nama kolom sama di kedua tabel.</p>
+
+            <div class="code-block">
+                <pre>SELECT o.order_id, c.customer_name
+FROM `datasetku.orders` AS o
+JOIN `datasetku.customers` AS c
+  USING (customer_id);</pre>
+            </div>
+
+            <h3>Tipe-tipe JOIN</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipe</th>
+                        <th>Deskripsi</th>
+                        <th>Kapan Digunakan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>INNER JOIN</code></td>
+                        <td>Hanya baris yang match</td>
+                        <td>Default, ketika butuh data lengkap dari kedua tabel</td>
+                    </tr>
+                    <tr>
+                        <td><code>LEFT JOIN</code></td>
+                        <td>Semua dari kiri + match dari kanan</td>
+                        <td>Ingin semua data dari tabel utama</td>
+                    </tr>
+                    <tr>
+                        <td><code>RIGHT JOIN</code></td>
+                        <td>Semua dari kanan + match dari kiri</td>
+                        <td>Jarang dipakai, bisa diganti LEFT JOIN</td>
+                    </tr>
+                    <tr>
+                        <td><code>FULL OUTER JOIN</code></td>
+                        <td>Semua baris dari kedua tabel</td>
+                        <td>Analisis data yang mungkin tidak match</td>
+                    </tr>
+                    <tr>
+                        <td><code>CROSS JOIN</code></td>
+                        <td>Semua kombinasi</td>
+                        <td>Membuat matrix atau tabel referensi</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Left Join (Outer Join)</h2>
+            <p><code>LEFT JOIN</code> mempertahankan semua baris dari tabel kiri.</p>
+
+            <div class="code-block">
+                <pre>SELECT c.customer_id, c.customer_name, o.order_id
+FROM `datasetku.customers` AS c
+LEFT JOIN `datasetku.orders` AS o
+  ON c.customer_id = o.customer_id;</pre>
+            </div>
+
+            <p>Hasil akan menampilkan semua customer, bahkan yang belum pernah order (order_id akan NULL).</p>
+
+            <h3>Mencari Customer yang Belum Pernah Order</h3>
+            <div class="code-block">
+                <pre>SELECT c.customer_id, c.customer_name
+FROM `datasetku.customers` AS c
+LEFT JOIN `datasetku.orders` AS o
+  ON c.customer_id = o.customer_id
+WHERE o.order_id IS NULL;</pre>
+            </div>
+
+            <h2>Right & Full Outer Join</h2>
+            <p>Right dan full outer join mengikuti konsep yang sama namun menahan baris dari sisi berbeda.</p>
+
+            <div class="code-block">
+                <pre>-- RIGHT JOIN (jarang dipakai, bisa diganti LEFT JOIN)
+SELECT c.customer_id, o.order_id
+FROM `datasetku.orders` AS o
+RIGHT JOIN `datasetku.customers` AS c
+  ON o.customer_id = c.customer_id;
+
+-- FULL OUTER JOIN
+SELECT c.customer_id, o.order_id
+FROM `datasetku.customers` AS c
+FULL OUTER JOIN `datasetku.orders` AS o
+  ON c.customer_id = o.customer_id;</pre>
+            </div>
+
+            <h2>Cross Join</h2>
+            <p><code>CROSS JOIN</code> menghasilkan kombinasi semua baris, cocok untuk membuat kalender atau tabel referensi.</p>
+
+            <div class="code-block">
+                <pre>SELECT *
+FROM `util.tanggal` CROSS JOIN `util.shift`;
+
+-- Contoh: Membuat kombinasi semua produk dengan semua store
+SELECT p.product_id, s.store_id
+FROM `datasetku.products` AS p
+CROSS JOIN `datasetku.stores` AS s;</pre>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ Perhatian:</strong> CROSS JOIN bisa menghasilkan data sangat besar! Jika tabel A punya 1000 baris dan tabel B punya 500 baris, hasilnya 500,000 baris.
+            </div>
+
+            <h2>Self Join</h2>
+            <p>Self join terjadi ketika tabel digabung dengan dirinya sendiri, misalnya untuk mencari pasangan atasan-bawahan.</p>
+
+            <div class="code-block">
+                <pre>-- Mencari employee dan manager mereka
+SELECT
+  e.employee_name AS karyawan,
+  m.employee_name AS manager
+FROM `datasetku.employees` AS e
+LEFT JOIN `datasetku.employees` AS m
+  ON e.manager_id = m.employee_id;</pre>
+            </div>
+
+            <h2>Multiple Joins</h2>
+            <p>Anda bisa menggabungkan lebih dari 2 tabel dalam satu query.</p>
+
+            <div class="code-block">
+                <pre>SELECT
+  o.order_id,
+  c.customer_name,
+  p.product_name,
+  oi.quantity,
+  oi.price
+FROM `datasetku.orders` AS o
+JOIN `datasetku.customers` AS c
+  ON o.customer_id = c.customer_id
+JOIN `datasetku.order_items` AS oi
+  ON o.order_id = oi.order_id
+JOIN `datasetku.products` AS p
+  ON oi.product_id = p.product_id
+WHERE o.order_date >= '2024-01-01';</pre>
+            </div>
+
+            <h2>Menangani Duplikasi</h2>
+            <p>Pastikan kolom <code>ON</code> memiliki nilai unik atau gunakan agregasi di subquery sebelum join.</p>
+
+            <div class="code-block">
+                <pre>WITH latest_price AS (
+  SELECT sku, ANY_VALUE(price) AS price
+  FROM `datasetku.price_log`
+  QUALIFY ROW_NUMBER() OVER (PARTITION BY sku ORDER BY ts DESC) = 1
+)
+SELECT o.order_id, o.sku, p.price
+FROM `datasetku.order_items` AS o
+JOIN latest_price AS p USING (sku);</pre>
+            </div>
+
+            <h3>Mendeteksi Row Explosion</h3>
+            <div class="code-block">
+                <pre>-- Cek jumlah baris sebelum join
+SELECT COUNT(*) FROM `datasetku.orders`;  -- Misalnya: 1000 baris
+
+-- Setelah join, cek lagi
+SELECT COUNT(*)
+FROM `datasetku.orders` AS o
+JOIN `datasetku.order_items` AS oi
+  ON o.order_id = oi.order_id;  -- Misalnya: 3500 baris
+
+-- Jika hasilnya jauh lebih banyak, artinya ada duplikasi atau relationship 1-to-many</pre>
+            </div>
+
+            <h2>Join dengan Kondisi Tambahan</h2>
+            <p>Anda bisa menambahkan kondisi tambahan di klausa <code>ON</code>.</p>
+
+            <div class="code-block">
+                <pre>SELECT o.order_id, p.price
+FROM `datasetku.orders` AS o
+JOIN `datasetku.price_history` AS p
+  ON o.product_id = p.product_id
+  AND o.order_date >= p.valid_from
+  AND o.order_date < p.valid_until;</pre>
+            </div>
+
+            <h2>Contoh Praktis: Sales Analysis</h2>
+            <div class="code-block">
+                <pre>WITH order_summary AS (
+  SELECT
+    o.order_id,
+    o.customer_id,
+    o.order_date,
+    SUM(oi.quantity * oi.price) AS order_total
+  FROM `datasetku.orders` AS o
+  JOIN `datasetku.order_items` AS oi
+    ON o.order_id = oi.order_id
+  WHERE o.order_date >= '2024-01-01'
+  GROUP BY o.order_id, o.customer_id, o.order_date
+)
+SELECT
+  c.customer_name,
+  c.city,
+  COUNT(os.order_id) AS total_orders,
+  SUM(os.order_total) AS total_spent,
+  AVG(os.order_total) AS avg_order_value
+FROM `datasetku.customers` AS c
+LEFT JOIN order_summary AS os
+  ON c.customer_id = os.customer_id
+GROUP BY c.customer_name, c.city
+ORDER BY total_spent DESC
+LIMIT 100;</pre>
+            </div>
+
+            <h2>Checklist Join</h2>
+            <div class="checklist-box">
+                <strong>✅ Checklist sebelum JOIN:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>Gunakan alias singkat seperti <code>c</code> atau <code>o</code> agar klausa ON mudah dibaca</li>
+                    <li>Cek jumlah baris sebelum dan sesudah join untuk memastikan tidak terjadi row explosion</li>
+                    <li>Pastikan kolom join memiliki index (untuk performa)</li>
+                    <li>Tambahkan kondisi waktu (mis. <code>AND o.order_date >= p.valid_from</code>) ketika menggabungkan tabel bertipe sejarah</li>
+                    <li>Gunakan <code>DISTINCT</code> atau agregasi jika ada duplikasi yang tidak diinginkan</li>
+                    <li>Handle NULL values dengan <code>COALESCE</code> atau <code>IS NULL</code> check</li>
+                </ul>
+            </div>
+
+            <h2>Common Join Patterns</h2>
+
+            <h3>1. Fact-Dimension Join</h3>
+            <div class="code-block">
+                <pre>-- Transaksi (fact) + Customer & Product (dimensions)
+SELECT
+  t.transaction_id,
+  c.customer_name,
+  p.product_name,
+  t.amount
+FROM `datasetku.transactions` AS t
+JOIN `datasetku.customers` AS c ON t.customer_id = c.customer_id
+JOIN `datasetku.products` AS p ON t.product_id = p.product_id;</pre>
+            </div>
+
+            <h3>2. Latest Record Join</h3>
+            <div class="code-block">
+                <pre>-- Ambil harga terbaru untuk setiap produk
+WITH latest_price AS (
+  SELECT
+    product_id,
+    price,
+    ROW_NUMBER() OVER (PARTITION BY product_id ORDER BY updated_at DESC) AS rn
+  FROM `datasetku.price_history`
+)
+SELECT p.product_name, lp.price
+FROM `datasetku.products` AS p
+JOIN latest_price AS lp
+  ON p.product_id = lp.product_id
+  AND lp.rn = 1;</pre>
+            </div>
+
+            <h2>Ringkasan</h2>
+            <p>JOIN adalah fondasi SQL untuk menggabungkan data dari multiple sources. Pilih tipe JOIN yang tepat berdasarkan kebutuhan analisis, selalu monitor row count untuk menghindari row explosion, dan gunakan alias serta CTE untuk menjaga query tetap readable.</p>
+
+            <div class="tip-box">
+                <strong>🎯 Key Takeaways:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><code>INNER JOIN</code> → Hanya data yang match</li>
+                    <li><code>LEFT JOIN</code> → Semua dari kiri + match dari kanan</li>
+                    <li><code>CROSS JOIN</code> → Semua kombinasi</li>
+                    <li>Self join untuk hierarchical data</li>
+                    <li>Multiple joins untuk complex analysis</li>
+                    <li>Selalu cek row count sebelum & sesudah join</li>
+                </ul>
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+    </div>
+
+    <script src="../../js/script.js"></script>
+</body>
+</html>

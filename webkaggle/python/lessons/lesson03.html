@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelajaran 03: Boolean & Kondisional</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .lesson-content-box {background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 20px;}
+        .lesson-header-box {margin-bottom: 30px;}
+        .lesson-number-badge {display: inline-block; background: #667eea; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9em; margin-bottom: 10px;}
+        h1 {color: #333; margin-bottom: 15px;}
+        h2 {color: #667eea; margin-top: 30px; margin-bottom: 15px; font-size: 1.5em;}
+        h3 {color: #333; margin-top: 25px; margin-bottom: 12px; font-size: 1.2em;}
+        p {line-height: 1.8; color: #555; margin-bottom: 15px;}
+        .code-block {background: #f8f9fa; border-left: 4px solid #667eea; padding: 20px; border-radius: 8px; margin: 20px 0; overflow-x: auto;}
+        pre {margin: 0; font-family: 'Courier New', monospace; color: #333;}
+        code {background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; color: #d63384;}
+        table {width: 100%; border-collapse: collapse; margin: 20px 0;}
+        th, td {border: 1px solid #dee2e6; padding: 12px; text-align: left;}
+        th {background: #f8f9fa; font-weight: 600; color: #333;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+        
+        <div class="lesson-content-box">
+            <div class="lesson-header-box">
+                <span class="lesson-number-badge">Pelajaran 03</span>
+                <h1>Boolean & Kondisional</h1>
+                <p style="font-size: 1.1em; color: #666;">Kenali tipe bool, operator perbandingan, logika and/or/not, serta penerapan kondisional untuk mengendalikan alur program.</p>
+            </div>
+
+            <h2>Boolean & Tipe bool</h2>
+            <p>Python menyediakan tipe <code>bool</code> dengan dua nilai saja: <code>True</code> dan <code>False</code>. Biasanya kita mendapat nilainya dari hasil perbandingan.</p>
+
+            <div class="code-block">
+                <pre>x = True
+print(x)
+print(type(x))</pre>
+            </div>
+
+            <h2>Operator Perbandingan</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operasi</th>
+                        <th>Deskripsi</th>
+                        <th>Operasi</th>
+                        <th>Deskripsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>a == b</code></td>
+                        <td>a sama dengan b</td>
+                        <td><code>a != b</code></td>
+                        <td>a tidak sama dengan b</td>
+                    </tr>
+                    <tr>
+                        <td><code>a < b</code></td>
+                        <td>a kurang dari b</td>
+                        <td><code>a > b</code></td>
+                        <td>a lebih dari b</td>
+                    </tr>
+                    <tr>
+                        <td><code>a <= b</code></td>
+                        <td>a kurang/sama dengan b</td>
+                        <td><code>a >= b</code></td>
+                        <td>a lebih/sama dengan b</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-block">
+                <pre>def can_run_for_president(age):
+    """Apakah seseorang boleh mencalonkan diri sebagai presiden AS?"""
+    return age >= 35
+
+print(can_run_for_president(19))
+print(can_run_for_president(45))</pre>
+            </div>
+
+            <p>Gunakan <code>==</code> ketika membandingkan nilai; <code>=</code> hanya untuk assignment.</p>
+
+            <h2>Perbandingan + Aritmetika</h2>
+            <p>Operator perbandingan dapat digabung dengan operasi matematika. Contohnya untuk memeriksa bilangan ganjil:</p>
+
+            <div class="code-block">
+                <pre>def is_odd(n):
+    return (n % 2) == 1
+
+print(is_odd(100))
+print(is_odd(-1))</pre>
+            </div>
+
+            <h2>Menggabungkan Boolean</h2>
+            <p>Operator <code>and</code>, <code>or</code>, dan <code>not</code> menggabungkan ekspresi boolean.</p>
+
+            <div class="code-block">
+                <pre>def can_run_for_president(age, is_natural_born_citizen):
+    return is_natural_born_citizen and (age >= 35)
+
+print(can_run_for_president(19, True))
+print(can_run_for_president(55, False))
+print(can_run_for_president(55, True))</pre>
+            </div>
+
+            <p><code>and</code> memiliki prioritas lebih tinggi daripada <code>or</code>. Tambahkan tanda kurung demi keterbacaan dan mencegah bug.</p>
+
+            <div class="code-block">
+                <pre>prepared_for_weather = (
+    have_umbrella
+    or ((rain_level < 5) and have_hood)
+    or (not (rain_level > 0 and is_workday))
+)</pre>
+            </div>
+
+            <h2>Kondisional</h2>
+            <p>Boolean menjadi dasar <code>if</code>, <code>elif</code>, dan <code>else</code> yang menentukan cabang eksekusi.</p>
+
+            <div class="code-block">
+                <pre>def inspect(x):
+    if x == 0:
+        print(x, "adalah nol")
+    elif x > 0:
+        print(x, "positif")
+    elif x < 0:
+        print(x, "negatif")
+    else:
+        print("Tidak terdefinisi")
+
+inspect(0)
+inspect(-15)</pre>
+            </div>
+
+            <p>Perhatikan titik dua dan indentasi empat spasi yang menandai blok kode.</p>
+
+            <h2>Blok & Efek Samping</h2>
+            <div class="code-block">
+                <pre>def f(x):
+    if x > 0:
+        print("Hanya saat x positif", x)
+    print("Selalu dicetak", x)
+
+f(1)
+f(0)</pre>
+            </div>
+
+            <p>Baris di luar blok <code>if</code> selalu dieksekusi, apa pun nilai kondisinya.</p>
+
+            <h2>Konversi ke Boolean</h2>
+            <p><code>bool()</code> mengubah tipe lain menjadi boolean. Angka non-nol atau string non-kosong dianggap truthy.</p>
+
+            <div class="code-block">
+                <pre>print(bool(1))
+print(bool(0))
+print(bool("asf"))
+print(bool(""))
+
+if 0:
+    print(0)
+elif "spam":
+    print("spam")</pre>
+            </div>
+
+            <p>Kode di atas mencetak "spam" karena string non-kosong otomatis bernilai <code>True</code>.</p>
+        </div>
+
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+    </div>
+
+    <script src="../../js/script.js"></script>
+</body>
+</html>

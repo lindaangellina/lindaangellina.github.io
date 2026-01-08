@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelajaran 05: AS & WITH</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .lesson-content-box {background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 20px;}
+        .lesson-header-box {margin-bottom: 30px;}
+        .lesson-number-badge {display: inline-block; background: #f29111; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9em; margin-bottom: 10px;}
+        h1 {color: #333; margin-bottom: 15px;}
+        h2 {color: #f29111; margin-top: 30px; margin-bottom: 15px; font-size: 1.5em;}
+        h3 {color: #333; margin-top: 25px; margin-bottom: 12px; font-size: 1.2em;}
+        p {line-height: 1.8; color: #555; margin-bottom: 15px;}
+        .code-block {background: #f8f9fa; border-left: 4px solid #f29111; padding: 20px; border-radius: 8px; margin: 20px 0; overflow-x: auto;}
+        pre {margin: 0; font-family: 'Courier New', monospace; color: #333;}
+        code {background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; color: #d63384;}
+        ul {line-height: 2; color: #555;}
+        .tip-box {background: #d1ecf1; border-left: 4px solid #0dcaf0; padding: 15px; border-radius: 8px; margin: 20px 0;}
+        .benefit-box {background: #d4edda; border-left: 4px solid #28a745; padding: 15px; border-radius: 8px; margin: 20px 0;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+        
+        <div class="lesson-content-box">
+            <div class="lesson-header-box">
+                <span class="lesson-number-badge">Pelajaran 05</span>
+                <h1>AS & WITH</h1>
+                <p style="font-size: 1.1em; color: #666;">Gunakan alias dan common table expression (CTE) untuk membuat query kompleks tetap rapi serta mudah diuji.</p>
+            </div>
+
+            <h2>Alias Kolom</h2>
+            <p><code>AS</code> mengganti nama kolom di hasil akhir.</p>
+
+            <div class="code-block">
+                <pre>SELECT
+  customer_id AS id_pelanggan,
+  SUM(amount) AS total_belanja
+FROM `datasetku.transactions`
+GROUP BY customer_id;</pre>
+            </div>
+
+            <p>Alias dapat dipakai kembali di klausa <code>ORDER BY</code> atau <code>HAVING</code>.</p>
+
+            <div class="code-block">
+                <pre>SELECT
+  product_id,
+  SUM(quantity) AS total_terjual
+FROM `datasetku.order_items`
+GROUP BY product_id
+HAVING total_terjual > 100      -- Menggunakan alias
+ORDER BY total_terjual DESC;     -- Menggunakan alias</pre>
+            </div>
+
+            <div class="benefit-box">
+                <strong>✅ Keuntungan Alias Kolom:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>Nama kolom lebih deskriptif dan mudah dipahami</li>
+                    <li>Menghindari pengulangan ekspresi kompleks</li>
+                    <li>Mempermudah pembacaan hasil query</li>
+                </ul>
+            </div>
+
+            <h2>Alias Tabel</h2>
+            <p>Alias singkat mempermudah pembacaan query terutama saat melakukan join.</p>
+
+            <div class="code-block">
+                <pre>SELECT o.order_id, c.city
+FROM `datasetku.orders` AS o
+JOIN `datasetku.customers` AS c
+  ON o.customer_id = c.customer_id;</pre>
+            </div>
+
+            <p>Anda boleh menghilangkan kata <code>AS</code> untuk tabel, namun menuliskannya membuat niat lebih jelas.</p>
+
+            <div class="code-block">
+                <pre>-- Dengan AS (lebih eksplisit)
+FROM `datasetku.orders` AS o
+
+-- Tanpa AS (lebih ringkas)
+FROM `datasetku.orders` o</pre>
+            </div>
+
+            <h2>Common Table Expression (CTE)</h2>
+            <p><code>WITH</code> mendefinisikan subquery bernama yang dapat dipakai berkali-kali.</p>
+
+            <div class="code-block">
+                <pre>WITH populer AS (
+  SELECT product_id, SUM(qty) AS total
+  FROM `datasetku.order_items`
+  GROUP BY product_id
+  HAVING total > 500
+)
+SELECT p.product_id, p.total
+FROM populer AS p
+ORDER BY p.total DESC;</pre>
+            </div>
+
+            <p>CTE dievaluasi seperti subquery biasa, tetapi lebih mudah diuji karena dapat dieksekusi sendiri.</p>
+
+            <h3>Mengapa Menggunakan CTE?</h3>
+            <div class="benefit-box">
+                <strong>✅ Keuntungan CTE:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>Readability:</strong> Query kompleks jadi lebih mudah dibaca</li>
+                    <li><strong>Reusability:</strong> CTE bisa digunakan berkali-kali dalam query yang sama</li>
+                    <li><strong>Maintainability:</strong> Lebih mudah di-debug dan di-maintain</li>
+                    <li><strong>Modularity:</strong> Memecah logika kompleks jadi step-by-step</li>
+                </ul>
+            </div>
+
+            <h2>CTE Beruntun</h2>
+            <p>Anda bisa menumpuk beberapa CTE dan saling merujuk.</p>
+
+            <div class="code-block">
+                <pre>WITH penjualan AS (
+  SELECT
+    city_id,
+    product_id,
+    SUM(amount) AS total_sales
+  FROM `datasetku.transactions`
+  WHERE status = 'SUCCESS'
+  GROUP BY city_id, product_id
+),
+kota AS (
+  SELECT
+    city_id,
+    city_name,
+    region
+  FROM `datasetku.cities`
+  WHERE is_active = TRUE
+)
+SELECT
+  k.city_name,
+  k.region,
+  SUM(p.total_sales) AS omzet
+FROM penjualan AS p
+JOIN kota AS k USING (city_id)
+GROUP BY k.city_name, k.region
+ORDER BY omzet DESC;</pre>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 Tips:</strong> Gunakan penamaan deskriptif agar rekan tim langsung memahami peran tiap blok.
+            </div>
+
+            <h2>CTE vs Subquery</h2>
+
+            <h3>Dengan Subquery (Sulit Dibaca)</h3>
+            <div class="code-block">
+                <pre>SELECT
+  c.customer_name,
+  t.total_spent
+FROM `datasetku.customers` AS c
+JOIN (
+  SELECT
+    customer_id,
+    SUM(amount) AS total_spent
+  FROM `datasetku.transactions`
+  WHERE status = 'SUCCESS'
+  GROUP BY customer_id
+  HAVING SUM(amount) > 1000000
+) AS t ON c.customer_id = t.customer_id
+ORDER BY t.total_spent DESC;</pre>
+            </div>
+
+            <h3>Dengan CTE (Lebih Jelas)</h3>
+            <div class="code-block">
+                <pre>WITH big_spenders AS (
+  SELECT
+    customer_id,
+    SUM(amount) AS total_spent
+  FROM `datasetku.transactions`
+  WHERE status = 'SUCCESS'
+  GROUP BY customer_id
+  HAVING SUM(amount) > 1000000
+)
+SELECT
+  c.customer_name,
+  b.total_spent
+FROM `datasetku.customers` AS c
+JOIN big_spenders AS b
+  ON c.customer_id = b.customer_id
+ORDER BY b.total_spent DESC;</pre>
+            </div>
+
+            <h2>Contoh Praktis: Multi-Step Analysis</h2>
+            <div class="code-block">
+                <pre>WITH
+-- Step 1: Hitung total per customer
+customer_totals AS (
+  SELECT
+    customer_id,
+    COUNT(*) AS order_count,
+    SUM(total_amount) AS total_spent
+  FROM `datasetku.orders`
+  WHERE order_date >= '2024-01-01'
+  GROUP BY customer_id
+),
+-- Step 2: Kategorikan customer
+customer_segments AS (
+  SELECT
+    customer_id,
+    order_count,
+    total_spent,
+    CASE
+      WHEN total_spent > 10000000 THEN 'VIP'
+      WHEN total_spent > 5000000 THEN 'Premium'
+      WHEN total_spent > 1000000 THEN 'Regular'
+      ELSE 'New'
+    END AS segment
+  FROM customer_totals
+),
+-- Step 3: Hitung statistik per segment
+segment_stats AS (
+  SELECT
+    segment,
+    COUNT(*) AS customer_count,
+    AVG(total_spent) AS avg_spent,
+    SUM(total_spent) AS segment_revenue
+  FROM customer_segments
+  GROUP BY segment
+)
+-- Final: Tampilkan hasil
+SELECT
+  segment,
+  customer_count,
+  ROUND(avg_spent, 2) AS rata_rata_belanja,
+  segment_revenue,
+  ROUND(100.0 * segment_revenue / SUM(segment_revenue) OVER(), 2) AS pct_revenue
+FROM segment_stats
+ORDER BY segment_revenue DESC;</pre>
+            </div>
+
+            <h2>Tips Refaktor</h2>
+            <ul>
+                <li>Gunakan CTE untuk memecah perhitungan panjang jadi langkah kecil</li>
+                <li>Jika CTE sering dipakai di banyak query, pertimbangkan membuat view</li>
+                <li>Saat debug, jalankan CTE satu per satu untuk memastikan hasilnya benar</li>
+                <li>Beri nama CTE yang deskriptif: <code>active_customers</code> lebih baik dari <code>temp1</code></li>
+                <li>Gunakan komentar untuk menjelaskan logika bisnis di setiap CTE</li>
+            </ul>
+
+            <h2>Debugging CTE</h2>
+            <p>Salah satu keuntungan CTE adalah mudah di-debug. Anda bisa test setiap CTE secara terpisah:</p>
+
+            <div class="code-block">
+                <pre>-- Test CTE pertama saja
+WITH penjualan AS (
+  SELECT
+    city_id,
+    product_id,
+    SUM(amount) AS total_sales
+  FROM `datasetku.transactions`
+  WHERE status = 'SUCCESS'
+  GROUP BY city_id, product_id
+)
+SELECT * FROM penjualan LIMIT 10;
+
+-- Jika hasil OK, lanjut test dengan CTE kedua
+WITH penjualan AS (...),
+     kota AS (...)
+SELECT * FROM kota LIMIT 10;</pre>
+            </div>
+
+            <h2>Ringkasan</h2>
+            <p>Alias dan CTE adalah tools penting untuk menulis SQL yang maintainable. Gunakan alias untuk memperjelas nama kolom dan tabel, dan gunakan CTE untuk memecah query kompleks menjadi step-by-step yang mudah dipahami dan di-debug.</p>
+
+            <div class="tip-box">
+                <strong>🎯 Key Takeaways:</strong>
+                <ul style="margin-top: 10px;">
+                    <li><code>AS</code> untuk alias kolom dan tabel</li>
+                    <li><code>WITH</code> untuk membuat CTE</li>
+                    <li>CTE dapat di-stack dan saling merujuk</li>
+                    <li>CTE lebih readable daripada nested subquery</li>
+                    <li>Nama deskriptif > nama singkat</li>
+                </ul>
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+    </div>
+
+    <script src="../../js/script.js"></script>
+</body>
+</html>

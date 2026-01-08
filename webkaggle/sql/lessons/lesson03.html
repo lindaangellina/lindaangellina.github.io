@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelajaran 03: Group By, Having & Count</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .lesson-content-box {background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 20px;}
+        .lesson-header-box {margin-bottom: 30px;}
+        .lesson-number-badge {display: inline-block; background: #f29111; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9em; margin-bottom: 10px;}
+        h1 {color: #333; margin-bottom: 15px;}
+        h2 {color: #f29111; margin-top: 30px; margin-bottom: 15px; font-size: 1.5em;}
+        h3 {color: #333; margin-top: 25px; margin-bottom: 12px; font-size: 1.2em;}
+        p {line-height: 1.8; color: #555; margin-bottom: 15px;}
+        .code-block {background: #f8f9fa; border-left: 4px solid #f29111; padding: 20px; border-radius: 8px; margin: 20px 0; overflow-x: auto;}
+        pre {margin: 0; font-family: 'Courier New', monospace; color: #333;}
+        code {background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; color: #d63384;}
+        ul {line-height: 2; color: #555;}
+        table {width: 100%; border-collapse: collapse; margin: 20px 0;}
+        th, td {border: 1px solid #dee2e6; padding: 12px; text-align: left;}
+        th {background: #f8f9fa; font-weight: 600; color: #333;}
+        .tip-box {background: #d1ecf1; border-left: 4px solid #0dcaf0; padding: 15px; border-radius: 8px; margin: 20px 0;}
+        .compare-box {background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; border-radius: 8px; margin: 20px 0;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+        
+        <div class="lesson-content-box">
+            <div class="lesson-header-box">
+                <span class="lesson-number-badge">Pelajaran 03</span>
+                <h1>Group By, Having & Count</h1>
+                <p style="font-size: 1.1em; color: #666;">Pelajari cara meringkas data per kategori, menghitung metrik agregat, dan memfilter hasil agregasi.</p>
+            </div>
+
+            <h2>Fungsi Agregasi Dasar</h2>
+            <p>Gunakan <code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, <code>MIN</code>, dan <code>MAX</code> untuk menghasilkan ringkasan.</p>
+
+            <div class="code-block">
+                <pre>SELECT
+  store_id,
+  SUM(total_sales) AS omzet,
+  AVG(basket_size) AS rata_keranjang
+FROM `datasetku.sales`
+GROUP BY store_id;</pre>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 Aturan Penting:</strong> Setiap kolom non-agregat harus disebut di klausa <code>GROUP BY</code>.
+            </div>
+
+            <h3>Fungsi Agregasi yang Tersedia</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fungsi</th>
+                        <th>Deskripsi</th>
+                        <th>Contoh</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>COUNT(*)</code></td>
+                        <td>Menghitung jumlah baris</td>
+                        <td><code>COUNT(*)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>SUM()</code></td>
+                        <td>Menjumlahkan nilai</td>
+                        <td><code>SUM(revenue)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>AVG()</code></td>
+                        <td>Menghitung rata-rata</td>
+                        <td><code>AVG(price)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>MIN()</code></td>
+                        <td>Nilai minimum</td>
+                        <td><code>MIN(created_at)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>MAX()</code></td>
+                        <td>Nilai maximum</td>
+                        <td><code>MAX(updated_at)</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Mengontrol Level Agregasi</h2>
+            <p>Anda dapat mengelompokkan lebih dari satu kolom.</p>
+
+            <div class="code-block">
+                <pre>SELECT
+  store_id,
+  DATE(order_ts) AS tanggal,
+  COUNT(*) AS jumlah_order,
+  SUM(total_amount) AS total_penjualan
+FROM `datasetku.orders`
+GROUP BY store_id, DATE(order_ts)
+ORDER BY store_id, DATE(order_ts);</pre>
+            </div>
+
+            <p>Gunakan <code>ROLLUP</code> atau <code>GROUPING SETS</code> untuk total tambahan ketika dibutuhkan.</p>
+
+            <div class="code-block">
+                <pre>-- ROLLUP untuk subtotal dan grand total
+SELECT
+  region,
+  product_category,
+  SUM(sales) AS total_sales
+FROM `datasetku.sales`
+GROUP BY ROLLUP(region, product_category);</pre>
+            </div>
+
+            <h2>COUNT vs COUNT(DISTINCT)</h2>
+            <p><code>COUNT(*)</code> menghitung baris termasuk nilai NULL, sedangkan <code>COUNT(column)</code> mengabaikan NULL. Gunakan <code>DISTINCT</code> bila ingin menghitung entitas unik.</p>
+
+            <div class="code-block">
+                <pre>SELECT
+  region,
+  COUNT(*) AS total_order,
+  COUNT(customer_id) AS order_dengan_customer,
+  COUNT(DISTINCT customer_id) AS pelanggan_unik
+FROM `datasetku.orders`
+GROUP BY region;</pre>
+            </div>
+
+            <div class="compare-box">
+                <strong>📊 Perbedaan:</strong><br>
+                • <code>COUNT(*)</code> → Menghitung semua baris<br>
+                • <code>COUNT(column)</code> → Menghitung baris dimana column tidak NULL<br>
+                • <code>COUNT(DISTINCT column)</code> → Menghitung nilai unik di column
+            </div>
+
+            <h2>Memfilter dengan HAVING</h2>
+            <p><code>WHERE</code> memfilter baris sebelum agregasi, sementara <code>HAVING</code> memfilter setelah agregasi.</p>
+
+            <div class="code-block">
+                <pre>SELECT
+  channel,
+  SUM(amount) AS nilai
+FROM `datasetku.transactions`
+WHERE status = 'SUCCESS'           -- Filter sebelum agregasi
+GROUP BY channel
+HAVING SUM(amount) > 5000000;      -- Filter setelah agregasi</pre>
+            </div>
+
+            <h3>WHERE vs HAVING</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspek</th>
+                        <th>WHERE</th>
+                        <th>HAVING</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Kapan dijalankan</strong></td>
+                        <td>Sebelum GROUP BY</td>
+                        <td>Setelah GROUP BY</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Filter apa</strong></td>
+                        <td>Baris individual</td>
+                        <td>Grup hasil agregasi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bisa pakai agregat?</strong></td>
+                        <td>Tidak</td>
+                        <td>Ya</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contoh</strong></td>
+                        <td><code>WHERE status = 'ACTIVE'</code></td>
+                        <td><code>HAVING COUNT(*) > 10</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Menggunakan Alias di HAVING</h3>
+            <p>Gunakan alias agregat di HAVING agar query lebih mudah dibaca.</p>
+
+            <div class="code-block">
+                <pre>SELECT
+  product_id,
+  SUM(quantity) AS total_terjual
+FROM `datasetku.order_items`
+GROUP BY product_id
+HAVING total_terjual > 1000      -- Lebih mudah dibaca
+ORDER BY total_terjual DESC;</pre>
+            </div>
+
+            <h2>Contoh Lengkap</h2>
+            <div class="code-block">
+                <pre>SELECT
+  city,
+  category,
+  COUNT(*) AS jumlah_produk,
+  AVG(price) AS harga_rata_rata,
+  MIN(price) AS harga_termurah,
+  MAX(price) AS harga_termahal,
+  SUM(stock) AS total_stok
+FROM `datasetku.products`
+WHERE
+  is_active = TRUE
+  AND price > 0
+GROUP BY city, category
+HAVING
+  COUNT(*) >= 5                    -- Min 5 produk per grup
+  AND AVG(price) < 1000000         -- Rata-rata di bawah 1 juta
+ORDER BY city, harga_rata_rata DESC
+LIMIT 50;</pre>
+            </div>
+
+            <h2>Best Practice</h2>
+            <ul>
+                <li>Sertakan <code>ORDER BY</code> pada kolom agregat untuk menonjolkan kelompok bernilai besar</li>
+                <li>Tambahkan <code>LIMIT</code> jika hanya perlu menampilkan top N kelompok</li>
+                <li>Gunakan komentar untuk menjelaskan logika perhitungan metrik</li>
+                <li>Filter dengan <code>WHERE</code> terlebih dahulu sebelum <code>GROUP BY</code> untuk efisiensi</li>
+                <li>Gunakan <code>HAVING</code> hanya untuk kondisi yang melibatkan hasil agregasi</li>
+            </ul>
+
+            <h2>Ringkasan</h2>
+            <p>Fungsi agregasi memungkinkan Anda meringkas data menjadi insight yang actionable. <code>GROUP BY</code> menentukan level agregasi, <code>HAVING</code> memfilter hasil agregat, dan kombinasi keduanya membentuk fondasi analisis data SQL yang powerful.</p>
+        </div>
+
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+    </div>
+
+    <script src="../../js/script.js"></script>
+</body>
+</html>

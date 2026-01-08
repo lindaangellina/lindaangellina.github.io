@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelajaran 02: Select, From & Where</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .lesson-content-box {background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 20px;}
+        .lesson-header-box {margin-bottom: 30px;}
+        .lesson-number-badge {display: inline-block; background: #f29111; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9em; margin-bottom: 10px;}
+        h1 {color: #333; margin-bottom: 15px;}
+        h2 {color: #f29111; margin-top: 30px; margin-bottom: 15px; font-size: 1.5em;}
+        h3 {color: #333; margin-top: 25px; margin-bottom: 12px; font-size: 1.2em;}
+        p {line-height: 1.8; color: #555; margin-bottom: 15px;}
+        .code-block {background: #f8f9fa; border-left: 4px solid #f29111; padding: 20px; border-radius: 8px; margin: 20px 0; overflow-x: auto;}
+        pre {margin: 0; font-family: 'Courier New', monospace; color: #333;}
+        code {background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', monospace; color: #d63384;}
+        ul {line-height: 2; color: #555;}
+        .tip-box {background: #d1ecf1; border-left: 4px solid #0dcaf0; padding: 15px; border-radius: 8px; margin: 20px 0;}
+        .toc-box {background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+        
+        <div class="lesson-content-box">
+            <div class="lesson-header-box">
+                <span class="lesson-number-badge">Pelajaran 02</span>
+                <h1>Select, From & Where</h1>
+                <p style="font-size: 1.1em; color: #666;">Kuasai komponen inti query SQL untuk memilih kolom relevan dan menyaring baris sesuai kebutuhan analisis.</p>
+            </div>
+
+            <div class="toc-box">
+                <strong>📑 Daftar Isi:</strong>
+                <ol style="margin-top: 10px;">
+                    <li>Memilih Kolom</li>
+                    <li>Sumber Data</li>
+                    <li>Filter WHERE</li>
+                    <li>Gabungan Kondisi</li>
+                    <li>Praktik Baik</li>
+                </ol>
+            </div>
+
+            <h2>Memilih Kolom</h2>
+            <p><code>SELECT</code> menentukan kolom yang dikembalikan. Gunakan alias agar nama kolom lebih deskriptif.</p>
+
+            <div class="code-block">
+                <pre>SELECT
+  station_id AS id_stasiun,
+  AVG(precipitation) AS curah_hujan
+FROM `bigquery-public-data.noaa_gsod.gsod2020`
+LIMIT 10;</pre>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 Tips:</strong> Gunakan <code>*</code> hanya saat eksplorasi awal karena dapat membaca data lebih banyak dari yang dibutuhkan.
+            </div>
+
+            <h2>Menentukan Sumber Data</h2>
+            <p><code>FROM</code> bisa berupa tabel, view, atau subquery.</p>
+
+            <div class="code-block">
+                <pre>FROM `datasetku.penjualan_2023`
+
+-- atau menggunakan subquery
+FROM (
+  SELECT * FROM `datasetku.penjualan_2023`
+  WHERE channel = 'online'
+)</pre>
+            </div>
+
+            <p>Setiap subquery memerlukan alias.</p>
+
+            <h2>Penyaringan dengan WHERE</h2>
+            <p><code>WHERE</code> dievaluasi sebelum agregasi. Bandingkan nilai dengan operator logika.</p>
+
+            <div class="code-block">
+                <pre>SELECT *
+FROM `datasetku.transaksi`
+WHERE
+  status = 'SUCCESS'
+  AND amount BETWEEN 10000 AND 50000
+  AND DATE(order_ts) = '2024-09-01';</pre>
+            </div>
+
+            <h3>Operator WHERE yang Umum</h3>
+            <ul>
+                <li><code>=</code> - Sama dengan</li>
+                <li><code>!=</code> atau <code>&lt;&gt;</code> - Tidak sama dengan</li>
+                <li><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code> - Perbandingan</li>
+                <li><code>BETWEEN</code> - Rentang nilai</li>
+                <li><code>IN</code> - Daftar nilai</li>
+                <li><code>LIKE</code> - Pola teks</li>
+                <li><code>IS NULL</code> / <code>IS NOT NULL</code> - Cek nilai NULL</li>
+            </ul>
+
+            <h3>Contoh dengan IN dan LIKE</h3>
+            <div class="code-block">
+                <pre>-- Menggunakan IN untuk daftar pendek
+SELECT *
+FROM `datasetku.products`
+WHERE category IN ('Electronics', 'Books', 'Toys');
+
+-- Menggunakan LIKE untuk pola teks
+SELECT *
+FROM `datasetku.customers`
+WHERE email LIKE '%@gmail.com';</pre>
+            </div>
+
+            <h2>Menggabungkan Kondisi</h2>
+            <p>Gabungkan kondisi dengan <code>AND</code>/<code>OR</code>. Pakai tanda kurung demi kejelasan.</p>
+
+            <div class="code-block">
+                <pre>WHERE (region = 'APAC' OR region = 'EMEA')
+  AND NOT is_deleted</pre>
+            </div>
+
+            <p>Nilai <code>NULL</code> harus diuji memakai <code>IS NULL</code> atau <code>IS NOT NULL</code>.</p>
+
+            <div class="code-block">
+                <pre>SELECT *
+FROM `datasetku.users`
+WHERE last_login IS NULL;  -- Bukan: last_login = NULL</pre>
+            </div>
+
+            <h2>Parameter dan Praktik Baik</h2>
+            
+            <h3>1. Gunakan Parameter Query</h3>
+            <p>Gunakan parameter query di BigQuery (<code>@tanggal</code>) untuk menghindari string concatenation.</p>
+
+            <div class="code-block">
+                <pre>SELECT *
+FROM `datasetku.orders`
+WHERE order_date = @target_date;</pre>
+            </div>
+
+            <h3>2. Tambahkan Komentar</h3>
+            <p>Tambahkan komentar singkat (<code>-- catatan</code>) guna menjelaskan filter penting.</p>
+
+            <div class="code-block">
+                <pre>SELECT *
+FROM `datasetku.transactions`
+WHERE
+  status = 'SUCCESS'
+  -- Hanya transaksi di atas ambang batas untuk fraud detection
+  AND amount > 1000000;</pre>
+            </div>
+
+            <h3>3. Filter Seawal Mungkin</h3>
+            <p>Filter seawal mungkin untuk mengurangi data yang di-scan.</p>
+
+            <div class="code-block">
+                <pre>-- BAIK: Filter dulu baru agregasi
+SELECT category, COUNT(*) as total
+FROM `datasetku.products`
+WHERE is_active = TRUE
+GROUP BY category;
+
+-- KURANG BAIK: Membaca semua data dulu
+SELECT category, COUNT(*) as total
+FROM `datasetku.products`
+GROUP BY category
+HAVING is_active = TRUE;  -- Ini tidak akan bekerja karena is_active bukan agregat</pre>
+            </div>
+
+            <h2>Contoh Lengkap</h2>
+            <div class="code-block">
+                <pre>SELECT
+  customer_id,
+  order_date,
+  total_amount,
+  status
+FROM `datasetku.orders`
+WHERE
+  -- Filter tanggal
+  order_date >= '2024-01-01'
+  AND order_date < '2024-02-01'
+  -- Filter status
+  AND status IN ('COMPLETED', 'SHIPPED')
+  -- Filter jumlah
+  AND total_amount BETWEEN 100000 AND 5000000
+  -- Pastikan bukan order test
+  AND customer_id IS NOT NULL
+ORDER BY order_date DESC
+LIMIT 100;</pre>
+            </div>
+
+            <h2>Ringkasan</h2>
+            <ul>
+                <li><code>SELECT</code> memilih kolom yang ingin ditampilkan</li>
+                <li><code>FROM</code> menentukan sumber data (tabel/view/subquery)</li>
+                <li><code>WHERE</code> menyaring baris sebelum pemrosesan</li>
+                <li>Gunakan operator yang tepat untuk setiap tipe data</li>
+                <li>Filter seawal mungkin untuk efisiensi query</li>
+            </ul>
+        </div>
+
+        <a href="../index.html" class="back-btn">← Kembali ke Kursus</a>
+    </div>
+
+    <script src="../../js/script.js"></script>
+</body>
+</html>
