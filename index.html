@@ -19,15 +19,51 @@
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css"
-      integrity="sha512-Velp0ebMKjcd9RiCoaHhLXkR1sFoCCWXNp6w4zj1hfMifYB5441C+sKeBl/T/Ka6NjBiRfBBQRaQq65ekYz3UQ=="
-      crossorigin="anonymous"
-    />
+    <style>
+      .jumbotron {
+        padding-top: 6rem;
+        background-color: #0d6efd;
+        color: white;
+      }
 
-    <!-- My CSS -->
-    <link rel="stylesheet" href="style.css" />
+      #projects {
+        background-color: #e2edff;
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+      }
+
+      #about {
+        padding-top: 5rem;
+        padding-bottom: 3rem;
+      }
+
+      #contact {
+        background-color: #e2edff;
+        padding-top: 5rem;
+        padding-bottom: 3rem;
+      }
+
+      section {
+        padding-top: 5rem;
+      }
+
+      .card {
+        height: 100%;
+      }
+
+      .card-body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-text {
+        flex-grow: 1;
+      }
+
+      .btn-sm {
+        margin-top: auto;
+      }
+    </style>
 
     <title>My Portfolio | Linda Angellina</title>
   </head>
@@ -53,12 +89,8 @@
             <li class="nav-item">
               <a class="nav-link" href="#contact">Contact</a>
             </li>
-           <li class="nav-item">
-              <a class="nav-link" href="https://lindaangellina.github.io/index2">Portofolio 2</a>
-              <!-- <a class="nav-link" href="index2.html">Portofolio 2</a> -->
-            </li>
             <li class="nav-item">
-              <a class="nav-link" href="batik">Batik</a>
+              <a class="nav-link" href="https://lindaangellina.github.io/index2">Portofolio 2</a>
             </li>
           </ul>
         </div>
@@ -68,7 +100,7 @@
 
     <!-- Jumbotron -->
     <section class="jumbotron text-center">
-      <img src="img/linda1.jpg"Linda Angellina" width="200" class="rounded-circle img-thumbnail" />
+      <img src="img/linda1.jpg" alt="Linda Angellina" width="200" class="rounded-circle img-thumbnail" />
       <h1 class="display-4">Linda Angellina</h1>
       <p class="lead">SMK Negeri 5 Malang</p>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -91,7 +123,8 @@
         </div>
         <div class="row justify-content-center fs-5 text-center">
           <div class="col-md-4" data-aos="fade-right">
-            <p>Halo! Perkenalkan, nama saya Linda Angellina, siswi kelas XI jurusan PPLG (Pengembangan Perangkat Lunak dan Gim) di SMKN 5 Malang. Saya memiliki minat dalam dunia teknologi, khususnya pengembangan website, aplikasi, dan game. Di luar kegiatan belajar, saya memiliki hobi membaca novel dan berenang, yang membantu saya menjaga keseimbangan antara kreativitas dan fokus.</p>
+            <p>Halo! Perkenalkan, nama saya Linda Angellina, siswi kelas XI jurusan PPLG (Pengembangan Perangkat Lunak dan Gim) di SMKN 5 Malang. Saya memiliki minat dalam dunia teknologi, khususnya pengembangan website, aplikasi, dan game. Di luar kegiatan belajar, saya memiliki hobi membaca novel dan berenang, yang membantu saya menjaga keseimbangan antara kreativitas dan fokus.
+</p>
           </div>
           <div class="col-md-4" data-aos="fade-left">
             <p>Selama berada di kelas XI SMKN 5 Malang, saya telah mengerjakan berbagai proyek web dan game sebagai bagian dari proses pembelajaran. Proyek-proyek tersebut meliputi website informatif, sistem informasi berbasis web, serta game 2D, yang melatih kemampuan saya dalam desain UI, frontend, backend, dan pemahaman pengembangan perangkat lunak secara menyeluruh.</p>
@@ -108,7 +141,7 @@
     </section>
     <!-- Akhir About -->
 
-        <!-- Projects -->
+    <!-- Projects -->
     <section id="projects">
       <div class="container">
         <div class="row text-center mb-3">
@@ -119,49 +152,65 @@
         <div class="row justify-content-center">
           <div class="col-md-4 mb-3" data-aos="flip-right">
             <div class="card">
-              <img src="img/pj1.jpg" class="card-img-top" alt="Project 1" />
+              <img src="img/pj7.jpg" class="card-img-top" alt="Project 1" />
               <div class="card-body">
-                <p class="card-text">EduManage adalah website manajemen sekolah terpadu yang saya kembangkan untuk membantu sekolah dalam mengelola data siswa, guru, nilai, serta administrasi sekolah secara terpusat. Website ini dirancang agar proses pengelolaan menjadi lebih praktis, efisien, dan terorganisir dengan baik melalui tampilan yang sederhana dan mudah digunakan.</p>
+                <p class="card-text">Game Tebak Angka ini merupakan game sederhana berbasis web yang dibuat menggunakan coding, di mana pemain diminta menebak angka acak antara 1 hingga 100 melalui input yang disediakan, dengan tampilan visual bernuansa pink yang menarik dan interaktif, serta dilengkapi pilihan game lain sebagai bagian dari eksplorasi proyek pemrograman dan latihan logika dasar dalam pengembangan game.
+
+</p>
+                <a href="https://nasiigoreng.github.io" class="btn btn-primary btn-sm" target="_blank">Tap to Play</a>
               </div>
             </div>
           </div>
-          <div class="col-md-4 mb-3" data-aos="flip-right" data-aos-delay="500">
+          <div class="col-md-4 mb-3" data-aos="flip-right" data-aos-delay="100">
             <div class="card">
               <img src="img/pj2.jpg" class="card-img-top" alt="Project 2" />
               <div class="card-body">
                 <p class="card-text">Game Platformer Horror adalah game 2D yang saya buat menggunakan Construct 3 dengan nuansa gelap dan menyeramkan. Game ini mengusung konsep petualangan platformer, di mana pemain harus menghindari rintangan dan musuh untuk menyelesaikan level. Proyek ini dibuat untuk melatih logika game, pengaturan event sheet, serta desain level dan karakter.</p>
+                <a href="http://103.186.167.18:8002/rpl2/game/PuluPulu/" class="btn btn-primary btn-sm" target="_blank">Tap to Play</a>
               </div>
             </div>
           </div>
-          <div class="col-md-4 mb-3" data-aos="flip-right" data-aos-delay="1000">
+          <div class="col-md-4 mb-3" data-aos="flip-right" data-aos-delay="200">
             <div class="card">
-              <img src="img/pj3.jpg" class="card-img-top" alt="Project 3" />
+              <img src="img/pj6.jpg" class="card-img-top" alt="Project 3" />
               <div class="card-body">
-                <p class="card-text">Sistem Informasi Data Barang adalah aplikasi web berbasis admin dashboard yang saya kembangkan untuk mengelola data barang secara terstruktur. Sistem ini memiliki fitur tambah, edit, hapus, pencarian, dan pengelolaan stok barang, serta dilengkapi dengan tampilan dashboard yang rapi dan responsif menggunakan template AdminLTE. Proyek ini dibuat untuk melatih kemampuan backend dan frontend dalam pengembangan aplikasi web.</p>
+                <p class="card-text">Website ini merupakan platform pembelajaran mandiri yang membantu pengguna membangun keterampilan Data Science melalui kursus singkat dan latihan praktis, mencakup materi dasar seperti Python dan SQL yang disusun secara terstruktur agar mudah dipahami, fleksibel dipelajari sesuai ritme masing-masing, serta mendukung pengguna dalam mempersiapkan diri mengerjakan proyek data secara mandiri.
+</p>
+                <a href="https://lindaangellina.github.io/webkaggle/" class="btn btn-primary btn-sm" target="_blank">Tap to Open Website</a>
               </div>
             </div>
           </div>
-          <div class="col-md-4 mb-3" data-aos="flip-right" data-aos-delay="500">
+          <div class="col-md-4 mb-3" data-aos="flip-right" data-aos-delay="300">
             <div class="card">
               <img src="img/pj4.jpg" class="card-img-top" alt="Project 4" />
               <div class="card-body">
                 <p class="card-text">Website Topeng Nusantara adalah website edukasi yang saya buat untuk memperkenalkan berbagai jenis topeng tradisional dari berbagai daerah di Indonesia. Website ini menampilkan informasi sejarah, karakteristik, dan kegunaan topeng dengan tampilan visual yang menarik dan terstruktur. Proyek ini bertujuan untuk melestarikan budaya Nusantara sekaligus melatih kemampuan saya dalam desain UI dan pengembangan website.</p>
+                <a href="https://sellyal.github.io/galeri-topeng/" class="btn btn-primary btn-sm" target="_blank">Tap to Open Website</a>
               </div>
             </div>
           </div>
-          <div class="col-md-4 mb-3" data-aos="flip-right" data-aos-delay="1000">
+          <div class="col-md-4 mb-3" data-aos="flip-right" data-aos-delay="400">
             <div class="card">
               <img src="img/pj5.jpg" class="card-img-top" alt="Project 5" />
               <div class="card-body">
                 <p class="card-text">Website Batik Nusantara adalah website informatif yang saya rancang dan kembangkan untuk memperkenalkan batik Indonesia sebagai warisan budaya dunia. Website ini menampilkan halaman beranda, sejarah, galeri, dan informasi batik dengan tampilan visual modern, responsif, dan user-friendly. Proyek ini dibuat untuk melatih kemampuan desain UI serta pengembangan website menggunakan HTML, CSS, dan JavaScript.</p>
+                <a href="https://lindaangellina.github.io/batik/" class="btn btn-primary btn-sm" target="_blank">Tap to Open Website</a>
               </div>
             </div>
           </div>
         </div>
       </div>
- <!-- Akhir Projects -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#ffffff"
+          fill-opacity="10"
+          d="M0,128L30,149.3C60,171,120,213,180,224C240,235,300,213,360,192C420,171,480,149,540,160C600,171,660,213,720,197.3C780,181,840,107,900,101.3C960,96,1020,160,1080,197.3C1140,235,1200,245,1260,234.7C1320,224,1380,192,1410,176L1440,160L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"
+        ></path>
+      </svg>
+    </section>
+    <!-- Akhir Projects -->
 
- <!-- Contact -->
+    <!-- Contact -->
     <section id="contact">
       <div class="container">
         <div class="row text-center mb-3">
@@ -208,16 +257,10 @@
     </section>
     <!-- Akhir Contact -->
 
-
-
-
-
-
-
     <!-- Footer -->
     <footer class="bg-primary text-white text-center pb-5">
       <p>Created with <i class="bi bi-heart-fill text-danger"></i> by <a href="https://www.instagram.com/lindaangel505/" class="text-white fw-bold">Linda Angellina</a></p>
-    </footer> 
+    </footer>
     <!-- Akhir Footer -->
 
     <script
@@ -237,30 +280,11 @@
       gsap.from('.display-4', { delay: 1, duration: 1, opacity: 0, x: '-10%' });
 
       gsap.registerPlugin(TextPlugin);
-      gsap.to('.lead', { delay: 1.5, duration: 2, text: 'Student | Code Enginner' });
-
-      const galleryImages = document.querySelectorAll('.gallery-img');
-      const delayTimes = [0, 50, 100, 150, 200, 250, 300, 350, 400, 450];
-
-      function shuffleArray(array) {
-        for (var i = array.length - 1; i > 0; i--) {
-          var j = Math.floor(Math.random() * (i + 1));
-          var temp = array[i];
-          array[i] = array[j];
-          array[j] = temp;
-        }
-        return array;
-      }
-      const newDelay = shuffleArray(delayTimes);
-      galleryImages.forEach((img, i) => {
-        img.dataset.aos = 'fade-up';
-        img.dataset.aosDelay = i * 50 + '';
-        // img.dataset.aosDelay = newDelay[i];
-      });
+      gsap.to('.lead', { delay: 1.5, duration: 2, text: 'Student | Code Engineer' });
 
       AOS.init({
         once: true,
-        duration: 3000,
+        duration: 1000,
       });
     </script>
 
@@ -273,37 +297,18 @@
 
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        // ketika tombol submit diklik
-        // tampilkan tombol loading, hilangkan tombol kirim
         btnLoading.classList.toggle('d-none');
         btnKirim.classList.toggle('d-none');
         fetch(scriptURL, { method: 'POST', body: new FormData(form) })
           .then((response) => {
-            // tampilkan tombol kirim, hilangkan tombol loading
             btnLoading.classList.toggle('d-none');
             btnKirim.classList.toggle('d-none');
-            // tampilkan alert
             myAlert.classList.toggle('d-none');
-            // reset formnya
             form.reset();
             console.log('Success!', response);
           })
           .catch((error) => console.error('Error!', error.message));
       });
     </script>
-
-    <script type="text/javascript" src="js/vanilla-tilt.min.js"></script>
-    <script type="text/javascript">
-      VanillaTilt.init(document.querySelectorAll('.keyboard-box'), {
-        max: 35,
-        speed: 1000,
-        glare: true,
-      });
-    </script>
   </body>
 </html>
-
-
-
-
-
