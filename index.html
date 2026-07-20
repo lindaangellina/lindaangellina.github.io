@@ -1,314 +1,159 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linda Angellina — Frontend Developer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-      crossorigin="anonymous"
-    />
+<nav class="sidebar">
+  <div class="logo">L</div>
+  <div class="nav-links">
+    <a href="#home" class="nav-item active" aria-label="Home">
+      <svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
+    </a>
+    <a href="#about" class="nav-item" aria-label="About">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+    </a>
+    <a href="#projects" class="nav-item" aria-label="Projects">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+    </a>
+    <a href="#contact" class="nav-item" aria-label="Contact">
+      <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7L22 6"/></svg>
+    </a>
+  </div>
+</nav>
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+<main>
 
-    <!-- AOS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">FRONTEND DEVELOPER</p>
+      <h1>Linda<br>Angellina</h1>
+      <p class="tagline">Siswa PPLG yang lagi membangun kemampuan di frontend — bikin tampilan yang bersih, cepat, dan gampang dipakai.</p>
+      <div class="tags">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>Python</span>
+        <span>SQL</span>
+      </div>
+      <div class="cta">
+        <a href="#projects" class="btn-primary">Lihat proyek</a>
+        <a href="#contact" class="btn-secondary">Kontak</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="img/profile.jpg" alt="Linda Angellina">
+    </div>
+  </section>
 
-    <style>
-      .jumbotron {
-        padding-top: 6rem;
-        background-color: #0d6efd;
-        color: white;
-      }
+  <section id="about" class="about">
+    <p class="section-label">ABOUT</p>
+    <p class="about-text">Siswa SMK Negeri 5 Malang, jurusan PPLG, dengan minat besar di frontend development. Udah nyoba berbagai proyek, mulai dari game sederhana, website edukasi budaya, e-commerce, sampai machine learning. Selalu penasaran belajar hal baru dan suka bikin sesuatu yang bisa langsung dipakai orang lain.</p>
+  </section>
 
-      #projects {
-        background-color: #e2edff;
-        padding-top: 5rem;
-        padding-bottom: 5rem;
-      }
+  <section id="projects" class="projects">
+    <p class="section-label">PROJECTS</p>
 
-      #about {
-        padding-top: 5rem;
-        padding-bottom: 3rem;
-      }
-
-      #contact {
-        background-color: #e2edff;
-        padding-top: 5rem;
-        padding-bottom: 3rem;
-      }
-
-      section {
-        padding-top: 5rem;
-      }
-
-      .card {
-        height: 100%;
-      }
-
-      .card-body {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .card-text {
-        flex-grow: 1;
-      }
-
-      .btn-sm {
-        margin-top: auto;
-      }
-    </style>
-
-    <title>My Portfolio | Linda Angellina</title>
-  </head>
-  <body id="home">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">Linda Angellina</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#projects">Projects</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://lindaangellina.github.io/index2">Portofolio 2</a>
-            </li>
-          </ul>
+    <div class="featured">
+      <div class="featured-images">
+        <div class="featured-img-slot"><img src="img/ml1.jpg" alt="Deteksi Pneumonia - screenshot 1"></div>
+        <div class="featured-img-slot"><img src="img/ml2.jpg" alt="Deteksi Pneumonia - screenshot 2"></div>
+        <div class="featured-img-slot"><img src="img/ml3.jpg" alt="Deteksi Pneumonia - screenshot 3"></div>
+      </div>
+      <div class="featured-info">
+        <p class="featured-eyebrow">MACHINE LEARNING</p>
+        <h3 class="featured-title">Deteksi Pneumonia dari Citra Rontgen</h3>
+        <p class="featured-desc">Proyek machine learning untuk mendeteksi pneumonia dari citra rontgen dada.</p>
+        <div class="featured-tags">
+          <span>Python</span>
+          <span>TensorFlow</span>
+          <span>Machine Learning</span>
         </div>
       </div>
-    </nav>
-    <!-- Akhir Navbar -->
+    </div>
 
-    <!-- Jumbotron -->
-    <section class="jumbotron text-center">
-      <img src="img/linda1.jpg" alt="Linda Angellina" width="200" class="rounded-circle img-thumbnail" />
-      <h1 class="display-4">Linda Angellina</h1>
-      <p class="lead">SMK Negeri 5 Malang</p>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill="#ffffff"
-          fill-opacity="10"
-          d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,80C672,64,768,64,864,96C960,128,1056,192,1152,186.7C1248,181,1344,107,1392,69.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-        ></path>
-      </svg>
-    </section>
-    <!-- Akhir Jumbotron -->
+    <div class="project-list">
 
-    <!-- About -->
-    <section id="about">
-      <div class="container">
-        <div class="row text-center mb-3">
-          <div class="col" data-aos="fade-down">
-            <h2>About Me</h2>
-          </div>
+      <a class="project-item" href="https://lindaangellina.github.io/batik/" target="_blank" rel="noopener">
+        <div class="project-thumb"><img src="img/batik.jpg" alt="Batik Nusantara"></div>
+        <div class="project-info">
+          <p class="project-name">Batik Nusantara</p>
+          <p class="project-desc">Website edukasi jenis-jenis batik daerah Indonesia — Solo, Pekalongan, Yogyakarta, dan lainnya.</p>
         </div>
-        <div class="row justify-content-center fs-5 text-center">
-          <div class="col-md-4" data-aos="fade-right">
-            <p>Halo! Perkenalkan, nama saya Linda Angellina, siswi kelas XI jurusan PPLG (Pengembangan Perangkat Lunak dan Gim) di SMKN 5 Malang. Saya memiliki minat dalam dunia teknologi, khususnya pengembangan website, aplikasi, dan game. Di luar kegiatan belajar, saya memiliki hobi membaca novel dan berenang, yang membantu saya menjaga keseimbangan antara kreativitas dan fokus.
-</p>
-          </div>
-          <div class="col-md-4" data-aos="fade-left">
-            <p>Selama berada di kelas XI SMKN 5 Malang, saya telah mengerjakan berbagai proyek web dan game sebagai bagian dari proses pembelajaran. Proyek-proyek tersebut meliputi website informatif, sistem informasi berbasis web, serta game 2D, yang melatih kemampuan saya dalam desain UI, frontend, backend, dan pemahaman pengembangan perangkat lunak secara menyeluruh.</p>
-          </div>
+        <span class="project-arrow">→</span>
+      </a>
+
+      <a class="project-item" href="https://lindaangellina.github.io/lingshein/" target="_blank" rel="noopener">
+        <div class="project-thumb"><img src="img/lingshein.jpg" alt="Lingshein"></div>
+        <div class="project-info">
+          <p class="project-name">Lingshein</p>
+          <p class="project-desc">Website e-commerce skincare lengkap dengan keranjang belanja dan checkout.</p>
         </div>
-      </div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill="#e2edff"
-          fill-opacity="10"
-          d="M0,96L48,122.7C96,149,192,203,288,192C384,181,480,107,576,80C672,53,768,75,864,101.3C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-        ></path>
-      </svg>
-    </section>
-    <!-- Akhir About -->
+        <span class="project-arrow">→</span>
+      </a>
 
-    <!-- Projects -->
-    <section id="projects">
-      <div class="container">
-        <div class="row text-center mb-3">
-          <div class="col">
-            <h2>My Projects</h2>
-          </div>
+      <a class="project-item" href="https://lindaangellina.github.io/webkaggle/" target="_blank" rel="noopener">
+        <div class="project-thumb"><img src="img/kaggle.jpg" alt="Belajar Data Science"></div>
+        <div class="project-info">
+          <p class="project-name">Belajar Data Science</p>
+          <p class="project-desc">Platform belajar Python dan SQL, lengkap dengan sertifikat penyelesaian dari Kaggle.</p>
         </div>
-        <div class="row justify-content-center">
-          <div class="col-md-4 mb-3" data-aos="flip-right">
-            <div class="card">
-              <img src="img/pj7.jpg" class="card-img-top" alt="Project 1" />
-              <div class="card-body">
-                <p class="card-text">Game Tebak Angka ini merupakan game sederhana berbasis web yang dibuat menggunakan coding, di mana pemain diminta menebak angka acak antara 1 hingga 100 melalui input yang disediakan, dengan tampilan visual bernuansa pink yang menarik dan interaktif, serta dilengkapi pilihan game lain sebagai bagian dari eksplorasi proyek pemrograman dan latihan logika dasar dalam pengembangan game.
+        <span class="project-arrow">→</span>
+      </a>
 
-</p>
-                <a href="https://nasiigoreng.github.io" class="btn btn-primary btn-sm" target="_blank">Tap to Play</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3" data-aos="flip-right" data-aos-delay="100">
-            <div class="card">
-              <img src="img/pj2.jpg" class="card-img-top" alt="Project 2" />
-              <div class="card-body">
-                <p class="card-text">Game Platformer Horror adalah game 2D yang saya buat menggunakan Construct 3 dengan nuansa gelap dan menyeramkan. Game ini mengusung konsep petualangan platformer, di mana pemain harus menghindari rintangan dan musuh untuk menyelesaikan level. Proyek ini dibuat untuk melatih logika game, pengaturan event sheet, serta desain level dan karakter.</p>
-                <a href="http://103.186.167.18:8002/rpl2/game/PuluPulu/" class="btn btn-primary btn-sm" target="_blank">Tap to Play</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3" data-aos="flip-right" data-aos-delay="200">
-            <div class="card">
-              <img src="img/pj6.jpg" class="card-img-top" alt="Project 3" />
-              <div class="card-body">
-                <p class="card-text">Website ini merupakan platform pembelajaran mandiri yang membantu pengguna membangun keterampilan Data Science melalui kursus singkat dan latihan praktis, mencakup materi dasar seperti Python dan SQL yang disusun secara terstruktur agar mudah dipahami, fleksibel dipelajari sesuai ritme masing-masing, serta mendukung pengguna dalam mempersiapkan diri mengerjakan proyek data secara mandiri.
-</p>
-                <a href="https://lindaangellina.github.io/webkaggle/" class="btn btn-primary btn-sm" target="_blank">Tap to Open Website</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3" data-aos="flip-right" data-aos-delay="300">
-            <div class="card">
-              <img src="img/pj4.jpg" class="card-img-top" alt="Project 4" />
-              <div class="card-body">
-                <p class="card-text">Website Topeng Nusantara adalah website edukasi yang saya buat untuk memperkenalkan berbagai jenis topeng tradisional dari berbagai daerah di Indonesia. Website ini menampilkan informasi sejarah, karakteristik, dan kegunaan topeng dengan tampilan visual yang menarik dan terstruktur. Proyek ini bertujuan untuk melestarikan budaya Nusantara sekaligus melatih kemampuan saya dalam desain UI dan pengembangan website.</p>
-                <a href="https://sellyal.github.io/galeri-topeng/" class="btn btn-primary btn-sm" target="_blank">Tap to Open Website</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3" data-aos="flip-right" data-aos-delay="400">
-            <div class="card">
-              <img src="img/pj5.jpg" class="card-img-top" alt="Project 5" />
-              <div class="card-body">
-                <p class="card-text">Website Batik Nusantara adalah website informatif yang saya rancang dan kembangkan untuk memperkenalkan batik Indonesia sebagai warisan budaya dunia. Website ini menampilkan halaman beranda, sejarah, galeri, dan informasi batik dengan tampilan visual modern, responsif, dan user-friendly. Proyek ini dibuat untuk melatih kemampuan desain UI serta pengembangan website menggunakan HTML, CSS, dan JavaScript.</p>
-                <a href="https://lindaangellina.github.io/batik/" class="btn btn-primary btn-sm" target="_blank">Tap to Open Website</a>
-              </div>
-            </div>
-          </div>
+      <a class="project-item" href="https://sellyal.github.io/galeri-topeng/" target="_blank" rel="noopener">
+        <div class="project-thumb"><img src="img/topeng.jpg" alt="Galeri Topeng Nusantara"></div>
+        <div class="project-info">
+          <p class="project-name">Galeri Topeng Nusantara</p>
+          <p class="project-desc">Sistem manajemen koleksi topeng tradisional Indonesia dengan halaman login.</p>
         </div>
-      </div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill="#ffffff"
-          fill-opacity="10"
-          d="M0,128L30,149.3C60,171,120,213,180,224C240,235,300,213,360,192C420,171,480,149,540,160C600,171,660,213,720,197.3C780,181,840,107,900,101.3C960,96,1020,160,1080,197.3C1140,235,1200,245,1260,234.7C1320,224,1380,192,1410,176L1440,160L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"
-        ></path>
-      </svg>
-    </section>
-    <!-- Akhir Projects -->
+        <span class="project-arrow">→</span>
+      </a>
 
-    <!-- Contact -->
-    <section id="contact">
-      <div class="container">
-        <div class="row text-center mb-3">
-          <div class="col">
-            <h2>Contact Me</h2>
-          </div>
+      <a class="project-item" href="https://nasiigoreng.github.io/" target="_blank" rel="noopener">
+        <div class="project-thumb"><img src="img/game.jpg" alt="Game Tebak Angka"></div>
+        <div class="project-info">
+          <p class="project-name">Game Tebak Angka</p>
+          <p class="project-desc">Mini game tebak angka 1-100, plus beberapa game tambahan seperti flappy bird dan sliding puzzle.</p>
         </div>
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-            <div class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert">
-              <strong>Terimakasih!</strong> Pesan anda sudah kami terima.
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <form name="wpu-contact-form">
-              <div class="mb-3">
-                <label for="name" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control" id="name" aria-describedby="name" name="nama" />
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" aria-describedby="email" name="email" />
-              </div>
-              <div class="mb-3">
-                <label for="pesan" class="form-label">Pesan</label>
-                <textarea class="form-control" id="pesan" rows="3" name="pesan"></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary btn-kirim">Kirim</button>
+        <span class="project-arrow">→</span>
+      </a>
 
-              <button class="btn btn-primary btn-loading d-none" type="button" disabled>
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Loading...
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill="#0d6efd"
-          fill-opacity="10"
-          d="M0,128L30,149.3C60,171,120,213,180,224C240,235,300,213,360,192C420,171,480,149,540,160C600,171,660,213,720,197.3C780,181,840,107,900,101.3C960,96,1020,160,1080,197.3C1140,235,1200,245,1260,234.7C1320,224,1380,192,1410,176L1440,160L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"
-        ></path>
-      </svg>
-    </section>
-    <!-- Akhir Contact -->
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="bg-primary text-white text-center pb-5">
-      <p>Created with <i class="bi bi-heart-fill text-danger"></i> by <a href="https://www.instagram.com/lindaangel505/" class="text-white fw-bold">Linda Angellina</a></p>
-    </footer>
-    <!-- Akhir Footer -->
+  <section id="contact" class="contact">
+    <p class="section-label">CONTACT</p>
+    <p class="contact-text">Ada pertanyaan atau mau kolaborasi? Hubungi lewat salah satu di bawah ini.</p>
+    <div class="contact-list">
+      <a class="contact-item" href="mailto:lindaangel505@gmail.com">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7L22 6"/></svg>
+        <span>lindaangel505@gmail.com</span>
+      </a>
+      <a class="contact-item" href="https://github.com/lindaangellina" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.2 6.8 9.5.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.4-1.1.6-1.4-2.2-.2-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.2-.4-1.2.1-2.5 0 0 .8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.5.6.7 1 1.6 1 2.7 0 3.9-2.4 4.8-4.6 5 .4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10 10 0 0022 12c0-5.5-4.5-10-10-10z"/></svg>
+        <span>github.com/lindaangellina</span>
+      </a>
+      <a class="contact-item" href="https://www.linkedin.com/in/linda-angellina-b430a0423/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M11 17v-4.5c0-1.4 1-2.5 2.5-2.5s2.5 1.1 2.5 2.5V17"/></svg>
+        <span>linkedin.com/in/linda-angellina-b430a0423</span>
+      </a>
+      <a class="contact-item" href="https://www.instagram.com/lindaangel505" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+        <span>@lindaangel505</span>
+      </a>
+    </div>
+  </section>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-      crossorigin="anonymous"
-    ></script>
+  <footer class="footer">
+    <p>© 2026 Linda Angellina</p>
+  </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/TextPlugin.min.js"></script>
-
-    <script>
-      gsap.from('.img-thumbnail', { duration: 2, rotationX: 360 });
-      gsap.from('.navbar', { duration: 1.5, opacity: 0, y: '-100%', ease: 'bounce' });
-      gsap.from('.display-4', { delay: 1, duration: 1, opacity: 0, x: '-10%' });
-
-      gsap.registerPlugin(TextPlugin);
-      gsap.to('.lead', { delay: 1.5, duration: 2, text: 'Student | Code Engineer' });
-
-      AOS.init({
-        once: true,
-        duration: 1000,
-      });
-    </script>
-
-    <script>
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbzw7z3zCy2GUtwD4w0weaDZVjxobHvelv1WsZfbkjDN6vdvRO0EYBKsY8D6DVgFRkCu/exec';
-      const form = document.forms['wpu-contact-form'];
-      const btnKirim = document.querySelector('.btn-kirim');
-      const btnLoading = document.querySelector('.btn-loading');
-      const myAlert = document.querySelector('.my-alert');
-
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        btnLoading.classList.toggle('d-none');
-        btnKirim.classList.toggle('d-none');
-        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-          .then((response) => {
-            btnLoading.classList.toggle('d-none');
-            btnKirim.classList.toggle('d-none');
-            myAlert.classList.toggle('d-none');
-            form.reset();
-            console.log('Success!', response);
-          })
-          .catch((error) => console.error('Error!', error.message));
-      });
-    </script>
-  </body>
+</body>
 </html>
